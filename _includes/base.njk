@@ -1,34 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ title }}</title>
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <nav class="navbar">
-      <a class="logo" href="/">Plume de l’Ombre</a>
-      <ul class="nav-links">
-        <li><a href="/">Accueil</a></li>
-        <li><a href="/services.html">Services</a></li>
-        <li><a href="/portfolio.html">Portfolio</a></li>
-        <li><a href="/temoignages.html">Témoignages</a></li>
-        <li><a href="/apropo.html">À propos</a></li>
-      </ul>
-      <a class="btn" href="https://benevolent-jelly-fb7c64.netlify.app/contact/">Contactez-moi</a>
-    </nav>
+  <header>
+    <div class="wrap">
+      <nav aria-label="Navigation principale">
+        <div class="brand">Plume de l’Ombre</div>
+        <div class="menu" role="menubar">
+          <a role="menuitem" href="/">Accueil</a>
+          <a role="menuitem" href="/services.html">Services</a>
+          <a role="menuitem" href="/portfolio.html">Portfolio</a>
+          <a role="menuitem" href="/temoignages.html">Témoignages</a>
+          <a role="menuitem" href="/apropos.html">À propos</a>
+          <a role="menuitem" class="btn" href="/contact.html">Contactez-moi</a>
+        </div>
+      </nav>
+    </div>
   </header>
 
-  <main class="site-content">
+  <main id="content" class="wrap" tabindex="-1">
     {{ content | safe }}
   </main>
 
-  <footer class="site-footer">
-    <p>© <span id="y"></span> Plume de l’Ombre — Portfolio de rédaction & traduction. Tous droits réservés.</p>
+  <footer>
+    <div class="wrap">
+      <p>© <span id="y"></span> Plume de l’Ombre — Portfolio de rédaction & traduction. Tous droits réservés.</p>
+    </div>
   </footer>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </scr
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>

@@ -15,7 +15,8 @@ title: Accueil — Plume de l’Ombre
 <section id="portfolio">
   <h2>Portfolio</h2>
   <div class="grid cols-3" role="list" id="extraits-dyn">
-  {% for item in collections.extraits | reverse | slice(0,6) %}
+  {% set items = (collections.extraits or []) | reverse | slice(0,6) %}
+  {% for item in items %}
     <article class="card" role="listitem">
       <h3>{{ item.data.title }}</h3>
       <p class="muted">Extrait</p>
@@ -23,5 +24,8 @@ title: Accueil — Plume de l’Ombre
       <a href="{{ item.url }}" aria-label="Lire l’extrait complet">Lire l’extrait complet</a>
     </article>
   {% endfor %}
+  {% if items | length == 0 %}
+    <p class="muted">Aucun extrait publié pour le moment.</p>
+  {% endif %}
   </div>
 </section>

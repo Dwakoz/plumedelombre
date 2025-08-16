@@ -7,6 +7,21 @@
   <title>{{ title or "Plume de l’Ombre" }}</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  // si on vient d'une invitation, on finalise et on redirige vers /admin/
+  if (window.netlifyIdentity) {
+    netlifyIdentity.on('init', user => {
+      if (!user) {
+        netlifyIdentity.on('login', () => location.href = '/admin/');
+      }
+    });
+    // auto-ouvre le modal si un token d’invite est présent dans l’URL
+    if (location.hash && location.hash.match(/invite_token=/)) {
+      netlifyIdentity.open('signup');
+    }
+  }
+</script>
 <body>
   <header>
     <div class="wrap">

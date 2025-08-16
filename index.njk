@@ -8,49 +8,35 @@ title: Accueil — Plume de l’Ombre
   <h1 id="hero-title">Vos idées, mes mots.</h1>
   <p>Ghostwriter bilingue FR/EN. J’écris à votre place, dans votre style.</p>
   <div style="display:flex;gap:12px;margin-top:10px">
-    <a class="btn" href="/contact.html">Parler de votre projet</a>
-    <a class="btn ghost" href="/portfolio.html">Voir les rédactions</a>
+    <a class="btn" href="/contact.html" aria-label="Contacter Plume de l’Ombre pour discuter d’un projet">Contacter moi</a>
+    <a class="btn ghost" href="/portfolio.html" aria-label="Voir toutes mes rédactions">Voir des rédactions</a>
   </div>
 </section>
 
-<section id="redactions" aria-labelledby="redac-title">
-  <h2 id="redac-title">Rédactions</h2>
-  <p class="muted">Aperçu des derniers textes.</p>
-  <div class="grid cols-3" role="list">
-  {% for item in collections.redactions | reverse %}
-    {% if loop.index0 < 6 %}
-      <article class="card" role="listitem">
-        <h3>{{ item.data.title }}</h3>
-        <p class="muted">Rédaction</p>
-        <p>{{ item.templateContent | excerpt }}</p>
-        <a href="{{ item.url }}" aria-label="Lire la rédaction complète">Lire la rédaction complète</a>
-      </article>
-    {% endif %}
+<section id="portfolio">
+  <h2>Dernières rédactions</h2>
+  <div class="grid cols-3" role="list" id="redactions-dyn">
+  {% for item in collections.redactions | reverse | slice(0,6) %}
+    <article class="card" role="listitem">
+      <h3>{{ item.data.title }}</h3>
+      <p class="muted">Rédaction</p>
+      <p>{{ item.templateContent | excerpt }}</p>
+      <a href="{{ item.url }}" aria-label="Lire la rédaction complète : {{ item.data.title }}">Lire la rédaction complète</a>
+    </article>
   {% endfor %}
-  {% if (collections.redactions | length) == 0 %}
-    <p class="muted">Aucune rédaction publiée pour le moment.</p>
-  {% endif %}
   </div>
-  <p><a class="btn ghost" href="/portfolio.html">Voir toutes les rédactions</a></p>
 </section>
 
-<section id="articles" aria-labelledby="art-title">
-  <h2 id="art-title">Articles</h2>
-  <p class="muted">Sélection d’articles publiés en ligne.</p>
-  <div class="grid cols-3" role="list">
-  {% for item in collections.articles | reverse %}
-    {% if loop.index0 < 6 %}
-      <article class="card" role="listitem">
-        <h3>{{ item.data.title }}</h3>
-        {% if item.data.publisher %}<p class="muted">{{ item.data.publisher }}</p>{% endif %}
-        <p>{{ item.data.excerpt or '' }}</p>
-        <p><a class="btn ghost" href="{{ item.data.url }}" target="_blank" rel="noopener noreferrer">Lire</a></p>
-      </article>
-    {% endif %}
-  {% endfor %}
-  {% if (collections.articles | length) == 0 %}
-    <p class="muted">Aucun article référencé pour le moment.</p>
-  {% endif %}
-  </div>
-  <p><a class="btn ghost" href="/articles.html">Voir tous les articles</a></p>
+<section id="articles">
+  <h2>Articles publiés en ligne</h2>
+  <ul>
+    {% for article in collections.articles | reverse | slice(0,6) %}
+      <li>
+        <a href="{{ article.data.url }}" target="_blank" rel="noopener"
+           aria-label="Lire l’article externe : {{ article.data.title }}">
+          {{ article.data.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
 </section>

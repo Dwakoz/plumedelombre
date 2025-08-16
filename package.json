@@ -3,16 +3,11 @@
   "version": "1.0.0",
   "description": "Portfolio Ghostwriter bilingue FR/EN",
   "main": "index.js",
-  "scripts": {
-    "build": "eleventy",
-    "start": "eleventy --serve"
-  },
+  "scripts": { "build": "eleventy", "start": "eleventy --serve" },
   "author": "Plume de l’Ombre",
   "license": "MIT",
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.1"
-  },
-  "dependencies": {
-    "decap-cms-app": "^3.1.9"
+    "@11ty/eleventy": "^2.0.1",
+    "decap-cms": "^3.1.9"
   }
 }

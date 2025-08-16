@@ -1,4 +1,15 @@
-[[redirects]]
-  from = "/admin"
-  to = "/admin/"
-  status = 301
+[[headers]]
+for = "/*"
+[headers.values]
+Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+X-Content-Type-Options = "nosniff"
+X-Frame-Options = "DENY"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data: https:; script-src 'self'; connect-src 'self'"
+
+# /dashboard (ex-admin) a besoin du widget Identity
+[[headers]]
+for = "/dashboard/*"
+[headers.values]
+Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data: https:; script-src 'self' https://identity.netlify.com; connect-src 'self' https://identity.netlify.com"

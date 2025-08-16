@@ -1,17 +1,16 @@
 module.exports = function(eleventyConfig) {
-  // Fichiers copiés tels quels
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("styles.css");
   eleventyConfig.addPassthroughCopy({
     "node_modules/decap-cms/dist/decap-cms.js": "admin/decap-cms.js"
   });
 
-  // Collection des extraits (Markdown dans content/extraits/)
-  eleventyConfig.addCollection("extraits", (api) =>
-    api.getFilteredByGlob("content/extraits/*.md")
-  );
+  // Collection unifiée: lit redactions/ et l’ancien extraits/
+  eleventyConfig.addCollection("redactions", (api) => [
+    ...api.getFilteredByGlob("content/redactions/*.md"),
+    ...api.getFilteredByGlob("content/extraits/*.md")
+  ]);
 
-  // Filtre excerpt simple pour l’aperçu
   eleventyConfig.addFilter("excerpt", (content) => {
     if (!content) return "";
     const txt = String(content).replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();

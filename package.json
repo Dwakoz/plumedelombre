@@ -10,7 +10,9 @@
   "author": "Plume de l’Ombre",
   "license": "MIT",
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.1",
-    "decap-cms": "2.10.192"
+    "@11ty/eleventy": "^2.0.1"
+  },
+  "dependencies": {
+    "decap-cms-app": "^3.1.9"
   }
 }

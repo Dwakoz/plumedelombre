@@ -4,5 +4,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
     "node_modules/decap-cms/dist/decap-cms.js": "admin/decap-cms.js"
   });
-  return { dir:{ input:".", includes:"_includes", data:"_data", output:"_site" } };
+  return {
+    dir: { input: ".", includes: "_includes", data: "_data", output: "_site" },
+    templateFormats: ["njk","html","md"]
+  };
 };

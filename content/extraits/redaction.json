@@ -1,0 +1,4 @@
+{
+  "layout": "redaction.njk",
+  "permalink": "/redactions/{{ page.fileSlug }}/index.html"
+}

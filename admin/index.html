@@ -4,27 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Plume — Admin</title>
-
-    <!-- Widget d'authentification Netlify Identity (requis pour Git Gateway) -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-    <!-- Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
   <body>
-    <script>
-      // Redirige vers /admin après login
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
-      // Initialise le CMS (config.yml est dans le même dossier)
-      CMS.init();
-    </script>
+    <!-- Netlify Identity (auth) -->
+    <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <!-- Decap CMS depuis jsDelivr -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/decap-cms@^3.0.0/dist/decap-cms.js"
+      onload="
+        if (window.netlifyIdentity) {
+          netlifyIdentity.on('init', user => {
+            if (!user) {
+              netlifyIdentity.on('login', () => location.reload());
+            }
+          });
+        }
+        if (window.CMS) { CMS.init(); } else { console.error('CMS non chargé'); }
+      "
+    ></script>
   </body>
 </html>

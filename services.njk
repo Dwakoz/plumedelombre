@@ -2,9 +2,39 @@
 layout: base.njk
 title: Services — Plume de l’Ombre
 ---
-<section id='services'><h2>Services</h2><p class='muted'>Prestations détaillées.</p></section>
+<section id="services" aria-labelledby="svc-title">
+  <h2 id="svc-title">Services</h2>
+  <p class="muted">Options claires. Tarifs sur devis après évaluation du volume, du ton et des délais.</p>
 
+  <div class="grid cols-3" role="list">
+    <div class="card" role="listitem">
+      <h3>Rédaction fantôme</h3>
+      <p>Livres, mémoires, articles longs, pages web. Interview, plan, rédaction et révisions inclus.</p>
+      <ul class="list">
+        <li>Voix et style adaptés</li>
+        <li>Confidentialité contractuelle</li>
+        <li>Guideline éditoriale fournie</li>
+      </ul>
+    </div>
 
-{% set dummy = "" %}
-{% set perm = 'services.html' %}
-{% set _ = '' %}
+    <div class="card" role="listitem">
+      <h3>Réécriture & édition</h3>
+      <p>Clarté, structure, punch. Réécriture partielle ou complète, titres et chapeaux optimisés.</p>
+      <ul class="list">
+        <li>Amélioration du flow</li>
+        <li>SEO on-page basique</li>
+        <li>Version prête à publier</li>
+      </ul>
+    </div>
+
+    <div class="card" role="listitem">
+      <h3>Traduction FR ↔ EN</h3>
+      <p>Traduction de sens et de ton. Pas mot-à-mot. Localisation culturelle quand pertinent.</p>
+      <ul class="list">
+        <li>Relecture native</li>
+        <li>Glossaire client</li>
+        <li>Livrables doc + PDF</li>
+      </ul>
+    </div>
+  </div>
+</section>

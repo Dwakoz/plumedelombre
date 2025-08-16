@@ -2,7 +2,7 @@
   publish = "_site"
   command = "npm run build"
 
-# Sécurité par défaut
+# Sécurité par défaut (site public)
 [[headers]]
 for = "/*"
   [headers.values]
@@ -13,13 +13,23 @@ for = "/*"
   Permissions-Policy = "geolocation=(), microphone=(), camera=()"
   Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data: https:; script-src 'self'; connect-src 'self'"
 
-# CSP élargie pour le tableau d’admin (Decap + Netlify Identity)
+# Back-office /dashboard : élargir CSP pour Decap CMS + Identity
 [[headers]]
 for = "/dashboard/*"
   [headers.values]
-  Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data: https:; script-src 'self' https://identity.netlify.com; connect-src 'self' https://identity.netlify.com"
+  Content-Security-Policy = """
+    default-src 'self';
+    img-src 'self' data: https:;
+    style-src 'self' 'unsafe-inline';
+    font-src 'self' data: https:;
+    script-src 'self' 'unsafe-eval' https://identity.netlify.com;
+    connect-src 'self' https://identity.netlify.com https://api.netlify.com;
+    frame-src https://identity.netlify.com;
+    worker-src 'self' blob:;
+    child-src blob:
+  """
 
-# Casse l’ancienne URL /admin
+# Bloquer l’ancienne route /admin
 [[redirects]]
   from = "/admin/*"
   to = "/404.html"

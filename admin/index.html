@@ -4,24 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Plume — Admin</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
   </head>
   <body>
-    <!-- Netlify Identity (auth) -->
-    <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-    <!-- Decap CMS depuis jsDelivr -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/decap-cms@^3.0.0/dist/decap-cms.js"
-      onload="
-        if (window.netlifyIdentity) {
-          netlifyIdentity.on('init', user => {
-            if (!user) {
-              netlifyIdentity.on('login', () => location.reload());
-            }
-          });
-        }
-        if (window.CMS) { CMS.init(); } else { console.error('CMS non chargé'); }
-      "
-    ></script>
+    <!-- Ne PAS appeler CMS.init() -->
+    <script src="https://unpkg.com/decap-cms@2.15.72/dist/decap-cms.js"></script>
   </body>
 </html>

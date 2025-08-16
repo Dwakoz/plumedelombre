@@ -26,10 +26,14 @@
   <main id="content" class="wrap" tabindex="-1">
     {{ content | safe }}
   </main>
-  <footer>
-    <div class="wrap">
-      <p>© {{ "now" | date("yyyy") }} Plume de l’Ombre — Portfolio de rédaction & traduction. Tous droits réservés.</p>
-    </div>
-  </footer>
+ <footer>
+  <div class="wrap">
+    <p>© <span id="y"></span> Plume de l’Ombre — Portfolio de rédaction & traduction. Tous droits réservés.</p>
+  </div>
+</footer>
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>

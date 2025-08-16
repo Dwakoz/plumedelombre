@@ -1,54 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0f172a" />
-  <title>{{ title or "Plume de l’Ombre" }}</title>
-  <link rel="stylesheet" href="/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="/styles.css" />
 </head>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-  // si on vient d'une invitation, on finalise et on redirige vers /admin/
-  if (window.netlifyIdentity) {
-    netlifyIdentity.on('init', user => {
-      if (!user) {
-        netlifyIdentity.on('login', () => location.href = '/admin/');
-      }
-    });
-    // auto-ouvre le modal si un token d’invite est présent dans l’URL
-    if (location.hash && location.hash.match(/invite_token=/)) {
-      netlifyIdentity.open('signup');
-    }
-  }
-</script>
 <body>
-  <header>
-    <div class="wrap">
-      <nav aria-label="Navigation principale">
-        <div class="brand">Plume de l’Ombre</div>
-        <div class="menu">
-          <a href="/index.html">Accueil</a>
-          <a href="/services.html">Services</a>
-          <a href="/portfolio.html">Portfolio</a>
-          <a href="/temoignages.html">Témoignages</a>
-          <a href="/apropos.html">À propos</a>
-          <a href="/contact.html" class="btn">Demander un devis</a>
-        </div>
-      </nav>
-    </div>
+  <header class="site-header">
+    <nav class="navbar">
+      <a class="logo" href="/">Plume de l’Ombre</a>
+      <ul class="nav-links">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/portfolio.html">Portfolio</a></li>
+        <li><a href="/temoignages.html">Témoignages</a></li>
+        <li><a href="/apropo.html">À propos</a></li>
+      </ul>
+      <a class="btn" href="https://benevolent-jelly-fb7c64.netlify.app/contact/">Contactez-moi</a>
+    </nav>
   </header>
-  <main id="content" class="wrap" tabindex="-1">
+
+  <main class="site-content">
     {{ content | safe }}
   </main>
- <footer>
-  <div class="wrap">
-    <p>© <span id="y"></span> Plume de l’Ombre — Portfolio de rédaction & traduction. Tous droits réservés.</p>
-  </div>
-</footer>
-<script>
-  document.getElementById('y').textContent = new Date().getFullYear();
-</script>
 
-</body>
-</html>
+  <footer class="site-footer">
+    <p>© <span id="y"></span> Plume de l’Ombre — Portfolio de rédaction & traduction. Tous droits réservés.</p>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </scr

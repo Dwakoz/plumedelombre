@@ -1,11 +1,16 @@
 {
-  "name": "plume-portfolio-eleventy",
-  "private": true,
+  "name": "plumedelombre",
+  "version": "1.0.0",
+  "description": "Portfolio Ghostwriter bilingue FR/EN",
+  "main": "index.js",
   "scripts": {
     "build": "eleventy",
-    "dev": "eleventy --serve --watch"
+    "start": "eleventy --serve"
   },
-"devDependencies": {
-  "@11ty/eleventy": "^2.0.1",
-  "decap-cms": "2.10.192"
+  "author": "Plume de l’Ombre",
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "decap-cms": "2.10.192"
+  }
 }

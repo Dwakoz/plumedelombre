@@ -1,21 +1,24 @@
 module.exports = function(eleventyConfig) {
-  eleventyConfig.addPassthroughCopy("admin");
+  // Static
   eleventyConfig.addPassthroughCopy("styles.css");
+
+  // Decap CMS déplacé -> /dashboard
+  eleventyConfig.addPassthroughCopy("dashboard");
   eleventyConfig.addPassthroughCopy({
-    "node_modules/decap-cms/dist/decap-cms.js": "admin/decap-cms.js"
+    "node_modules/decap-cms/dist/decap-cms.js": "dashboard/decap-cms.js"
   });
 
-  // Rédactions
+  // Collections
   eleventyConfig.addCollection("redactions", (api) => [
     ...api.getFilteredByGlob("content/redactions/*.md"),
-    ...api.getFilteredByGlob("content/extraits/*.md")
+    ...api.getFilteredByGlob("content/extraits/*.md") // compat rétro
   ]);
 
-  // Articles (liens externes)
   eleventyConfig.addCollection("articles", (api) =>
     api.getFilteredByGlob("content/articles/*.md")
   );
 
+  // Excerpt
   eleventyConfig.addFilter("excerpt", (content) => {
     if (!content) return "";
     const txt = String(content).replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();

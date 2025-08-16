@@ -1,6 +1,6 @@
 ---
-title: Texte 1
-date: 2025-08-16T09:25:00Z
+title: Des générations de dégénérescence
+date: 2025-08-16T09:25:00.000Z
 ---
 Des générations de dégénérescence
 

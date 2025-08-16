@@ -1,63 +1,77 @@
 ---
 layout: base.njk
-title: Contact
+title: Contact — Plume de l’Ombre
 ---
 
-<section>
-  <h1>Contactez-moi</h1>
-  <form name="contact" method="POST" data-netlify="true" action="/merci" netlify-honeypot="bot-field">
+<section class="contact" aria-labelledby="contact-title">
+  <h2 id="contact-title">Contactez-moi</h2>
+  <form name="contact" method="POST" data-netlify="true">
     <input type="hidden" name="form-name" value="contact">
 
-    <!-- Anti-bot -->
-    <p hidden>
-      <label>Ne pas remplir : <input name="bot-field"></label>
+    <p>
+      <label for="name">Votre nom :</label><br>
+      <input type="text" id="name" name="name" placeholder="Entrez votre superbe prénom" required>
     </p>
 
     <p>
-      <label>Votre nom :<br>
-        <input type="text" name="name" required aria-label="Entrez votre nom">
-      </label>
+      <label for="email">Votre email :</label><br>
+      <input type="email" id="email" name="email" placeholder="exemple@email.com" required>
     </p>
 
     <p>
-      <label>Votre email :<br>
-        <input type="email" name="email" required aria-label="Entrez votre adresse email">
-      </label>
+      <label for="message">Message :</label><br>
+      <textarea id="message" name="message" rows="6" placeholder="Écrivez ici votre plus belle demande ✍️"></textarea>
     </p>
 
     <p>
-      <label>Message :<br>
-        <textarea name="message" required aria-label="Entrez votre message"></textarea>
-      </label>
-    </p>
-
-    <!-- ✅ Consentement RGPD obligatoire -->
-    <p class="consent">
       <label>
-        <input type="checkbox" name="consent" required aria-label="J’accepte la politique de confidentialité">
-        J’accepte la <a href="/privacy">politique de confidentialité</a>
+        <input type="checkbox" name="privacy" required>
+        J’accepte la <a href="/privacy.html">politique de confidentialité</a>
       </label>
     </p>
 
     <p>
-      <button type="submit" class="btn">Envoyer</button>
+      <button type="submit" class="btn">Envoyer 🚀</button>
     </p>
   </form>
 </section>
 
 <style>
-/* Focus clair pour accessibilité */
-:focus {
-  outline: 3px solid #2a7fff;
-  outline-offset: 3px;
-}
+  form input[type="text"],
+  form input[type="email"],
+  form textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px;
+    margin-top: 6px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    color: #000;
+    font-size: 1rem;
+  }
 
-/* Style uniforme pour checkbox */
-.consent input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: #2a7fff; /* Navigateur moderne */
-  cursor: pointer;
-  margin-right: 6px;
-}
+  form textarea {
+    min-height: 150px;
+  }
+
+  form input::placeholder,
+  form textarea::placeholder {
+    color: #888;
+    font-style: italic;
+  }
+
+  .btn {
+    background: #00aaff;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .btn:hover {
+    background: #008ecc;
+  }
 </style>

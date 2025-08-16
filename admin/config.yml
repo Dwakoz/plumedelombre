@@ -1,15 +1,23 @@
 backend:
   name: git-gateway
   branch: main
-media_folder: "static/uploads"
-public_folder: "/uploads"
+
+media_folder: "static/uploads"      # où les fichiers sont stockés dans le repo
+public_folder: "/uploads"           # URL publique correspondante
+
+publish_mode: editorial_workflow    # brouillons + publications (optionnel)
+
+locale: "fr"
+
 collections:
   - name: "extraits"
     label: "Extraits"
     folder: "content/extraits"
     create: true
     slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
     fields:
       - { label: "Titre", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ", picker_utc: true }
       - { label: "Texte", name: "body", widget: "markdown" }

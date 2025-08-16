@@ -9,12 +9,13 @@ title: Accueil — Plume de l’Ombre
   <p>Ghostwriter bilingue FR/EN. J’écris à votre place, dans votre style.</p>
   <div style="display:flex;gap:12px;margin-top:10px">
     <a class="btn" href="/contact.html">Parler de votre projet</a>
-    <a class="btn ghost" href="/portfolio.html">Voir des rédactions</a>
+    <a class="btn ghost" href="/portfolio.html">Voir les rédactions</a>
   </div>
 </section>
 
-<section id="portfolio">
-  <h2>Rédactions</h2>
+<section id="redactions" aria-labelledby="redac-title">
+  <h2 id="redac-title">Rédactions</h2>
+  <p class="muted">Aperçu des derniers textes.</p>
   <div class="grid cols-3" role="list">
   {% for item in collections.redactions | reverse %}
     {% if loop.index0 < 6 %}
@@ -30,4 +31,26 @@ title: Accueil — Plume de l’Ombre
     <p class="muted">Aucune rédaction publiée pour le moment.</p>
   {% endif %}
   </div>
+  <p><a class="btn ghost" href="/portfolio.html">Voir toutes les rédactions</a></p>
+</section>
+
+<section id="articles" aria-labelledby="art-title">
+  <h2 id="art-title">Articles</h2>
+  <p class="muted">Sélection d’articles publiés en ligne.</p>
+  <div class="grid cols-3" role="list">
+  {% for item in collections.articles | reverse %}
+    {% if loop.index0 < 6 %}
+      <article class="card" role="listitem">
+        <h3>{{ item.data.title }}</h3>
+        {% if item.data.publisher %}<p class="muted">{{ item.data.publisher }}</p>{% endif %}
+        <p>{{ item.data.excerpt or '' }}</p>
+        <p><a class="btn ghost" href="{{ item.data.url }}" target="_blank" rel="noopener noreferrer">Lire</a></p>
+      </article>
+    {% endif %}
+  {% endfor %}
+  {% if (collections.articles | length) == 0 %}
+    <p class="muted">Aucun article référencé pour le moment.</p>
+  {% endif %}
+  </div>
+  <p><a class="btn ghost" href="/articles.html">Voir tous les articles</a></p>
 </section>

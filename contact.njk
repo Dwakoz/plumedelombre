@@ -1,44 +1,63 @@
 ---
 layout: base.njk
-title: Contact — Plume de l’Ombre
-permalink: /contact.html
+title: Contact
 ---
 
-<section class="card">
+<section>
   <h1>Contactez-moi</h1>
-  <p>Remplissez le formulaire ci-dessous, je vous réponds sous 24–48h.</p>
+  <form name="contact" method="POST" data-netlify="true" action="/merci" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="contact">
 
-  <form name="contact"
-        method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-        action="/merci.html">
-
-    <!-- Champ caché obligatoire pour Netlify -->
-    <input type="hidden" name="form-name" value="contact" />
-
-    <!-- Champ honeypot anti-spam -->
-    <p class="sr-only">
-      <label>Ne pas remplir : <input name="bot-field" /></label>
+    <!-- Anti-bot -->
+    <p hidden>
+      <label>Ne pas remplir : <input name="bot-field"></label>
     </p>
 
-    <div>
-      <label for="name">Nom</label><br>
-      <input type="text" id="name" name="name" required>
-    </div>
-
-    <div>
-      <label for="email">Email</label><br>
-      <input type="email" id="email" name="email" required>
-    </div>
-
-    <div>
-      <label for="message">Message</label><br>
-      <textarea id="message" name="message" rows="6" required></textarea>
-    </div>
+    <p>
+      <label>Votre nom :<br>
+        <input type="text" name="name" required aria-label="Entrez votre nom">
+      </label>
+    </p>
 
     <p>
-      <button class="btn" type="submit">Envoyer</button>
+      <label>Votre email :<br>
+        <input type="email" name="email" required aria-label="Entrez votre adresse email">
+      </label>
+    </p>
+
+    <p>
+      <label>Message :<br>
+        <textarea name="message" required aria-label="Entrez votre message"></textarea>
+      </label>
+    </p>
+
+    <!-- ✅ Consentement RGPD obligatoire -->
+    <p class="consent">
+      <label>
+        <input type="checkbox" name="consent" required aria-label="J’accepte la politique de confidentialité">
+        J’accepte la <a href="/privacy">politique de confidentialité</a>
+      </label>
+    </p>
+
+    <p>
+      <button type="submit" class="btn">Envoyer</button>
     </p>
   </form>
 </section>
+
+<style>
+/* Focus clair pour accessibilité */
+:focus {
+  outline: 3px solid #2a7fff;
+  outline-offset: 3px;
+}
+
+/* Style uniforme pour checkbox */
+.consent input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #2a7fff; /* Navigateur moderne */
+  cursor: pointer;
+  margin-right: 6px;
+}
+</style>

@@ -9,3 +9,7 @@
     "@11ty/eleventy": "^2.0.1"
   }
 }
+"devDependencies": {
+  "@11ty/eleventy": "^2.0.1",
+  "decap-cms": "2.10.192"
+}

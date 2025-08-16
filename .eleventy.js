@@ -5,11 +5,16 @@ module.exports = function(eleventyConfig) {
     "node_modules/decap-cms/dist/decap-cms.js": "admin/decap-cms.js"
   });
 
-  // Collection unifiée: lit redactions/ et l’ancien extraits/
+  // Rédactions
   eleventyConfig.addCollection("redactions", (api) => [
     ...api.getFilteredByGlob("content/redactions/*.md"),
     ...api.getFilteredByGlob("content/extraits/*.md")
   ]);
+
+  // Articles (liens externes)
+  eleventyConfig.addCollection("articles", (api) =>
+    api.getFilteredByGlob("content/articles/*.md")
+  );
 
   eleventyConfig.addFilter("excerpt", (content) => {
     if (!content) return "";

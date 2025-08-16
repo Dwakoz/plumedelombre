@@ -4,7 +4,7 @@
     <h3>{{ item.data.title }}</h3>
     <p class="muted">Extrait</p>
     <p>{{ item.templateContent | replace('<',' ') | replace('>',' ') | replace('\n',' ') | truncate(500, true, '…') }}</p>
-    <a href="{{ item.url }}" aria-label="Lire l’extrait complet">Lire l’extrait complet</a>
+    <a href="{{ item.url }}">Lire l’extrait complet</a>
   </article>
 {% endfor %}
 </div>

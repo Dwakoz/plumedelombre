@@ -9,25 +9,25 @@ title: Accueil — Plume de l’Ombre
   <p>Ghostwriter bilingue FR/EN. J’écris à votre place, dans votre style.</p>
   <div style="display:flex;gap:12px;margin-top:10px">
     <a class="btn" href="/contact.html">Parler de votre projet</a>
-    <a class="btn ghost" href="/portfolio.html">Voir des extraits</a>
+    <a class="btn ghost" href="/portfolio.html">Voir des rédactions</a>
   </div>
 </section>
 
 <section id="portfolio">
-  <h2>Portfolio</h2>
+  <h2>Rédactions</h2>
   <div class="grid cols-3" role="list">
-  {% for item in collections.extraits | reverse %}
+  {% for item in collections.redactions | reverse %}
     {% if loop.index0 < 6 %}
       <article class="card" role="listitem">
         <h3>{{ item.data.title }}</h3>
-        <p class="muted">Extrait</p>
+        <p class="muted">Rédaction</p>
         <p>{{ item.templateContent | excerpt }}</p>
-        <a href="{{ item.url }}" aria-label="Lire l’extrait complet">Lire l’extrait complet</a>
+        <a href="{{ item.url }}" aria-label="Lire la rédaction complète">Lire la rédaction complète</a>
       </article>
     {% endif %}
   {% endfor %}
-  {% if (collections.extraits | length) == 0 %}
-    <p class="muted">Aucun extrait publié pour le moment.</p>
+  {% if (collections.redactions | length) == 0 %}
+    <p class="muted">Aucune rédaction publiée pour le moment.</p>
   {% endif %}
   </div>
 </section>

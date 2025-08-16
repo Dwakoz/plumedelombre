@@ -26,7 +26,7 @@ title: Accueil — Plume de l’Ombre
   <h2>Portfolio</h2>
   <p class="muted">Extraits publiés récemment.</p>
   <div class="grid cols-3" role="list" id="extraits-dyn">
-  {% for item in collections.extraits | reverse | slice(0,6) %}
+  {% for item in collections.extraits | reverse | slice(0,6) %} … {% endfor %}
     <article class="card" role="listitem">
       <h3>{{ item.data.title }}</h3>
       <p class="muted">Extrait</p>

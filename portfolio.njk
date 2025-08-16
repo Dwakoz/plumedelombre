@@ -2,14 +2,16 @@
 layout: base.njk
 title: Portfolio — Plume de l’Ombre
 ---
+
 <section id="portfolio">
-  <h2>Portfolio</h2>
-  <div class="grid cols-3" role="list" id="extraits-dyn">
+  <h1>Portfolio</h1>
+  <p>Quelques extraits représentatifs de mon travail.</p>
+  <div class="grid cols-3" role="list">
   {% for item in collections.extraits | reverse %}
     <article class="card" role="listitem">
       <h3>{{ item.data.title }}</h3>
       <p class="muted">Extrait</p>
-      <p>{{ item.templateContent | excerpt }}</p>
+      <p>{{ item.templateContent | safe }}</p>
       <a href="{{ item.url }}" aria-label="Lire l’extrait complet">Lire l’extrait complet</a>
     </article>
   {% endfor %}

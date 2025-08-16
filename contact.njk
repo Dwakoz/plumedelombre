@@ -1,22 +1,44 @@
 ---
 layout: base.njk
 title: Contact — Plume de l’Ombre
+permalink: /contact.html
 ---
 
-<section id="contact">
-  <h2>Parler de votre projet</h2>
-  <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="card" aria-label="Formulaire de contact">
+<section class="card">
+  <h1>Contactez-moi</h1>
+  <p>Remplissez le formulaire ci-dessous, je vous réponds sous 24–48h.</p>
+
+  <form name="contact"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/merci.html">
+
+    <!-- Champ caché obligatoire pour Netlify -->
     <input type="hidden" name="form-name" value="contact" />
-    <p class="sr-only"><label>Ne pas remplir <input name="bot-field" /></label></p>
-    <p><label>Nom<br/><input name="name" required style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:#0b1220;color:var(--txt)" /></label></p>
-    <p><label>Email<br/><input name="email" type="email" required style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:#0b1220;color:var(--txt)" /></label></p>
-    <p><label>Message<br/><textarea name="message" rows="6" required style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:#0b1220;color:var(--txt)"></textarea></label></p>
-    <p><button class="btn" type="submit">Envoyer</button></p>
+
+    <!-- Champ honeypot anti-spam -->
+    <p class="sr-only">
+      <label>Ne pas remplir : <input name="bot-field" /></label>
+    </p>
+
+    <div>
+      <label for="name">Nom</label><br>
+      <input type="text" id="name" name="name" required>
+    </div>
+
+    <div>
+      <label for="email">Email</label><br>
+      <input type="email" id="email" name="email" required>
+    </div>
+
+    <div>
+      <label for="message">Message</label><br>
+      <textarea id="message" name="message" rows="6" required></textarea>
+    </div>
+
+    <p>
+      <button class="btn" type="submit">Envoyer</button>
+    </p>
   </form>
 </section>
-
-
-
-{% set dummy = "" %}
-{% set perm = 'contact.html' %}
-{% set _ = '' %}

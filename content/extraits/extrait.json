@@ -1,0 +1,4 @@
+{
+  "layout": "extrait.njk",
+  "permalink": "/extraits/{{ page.fileSlug }}/index.html"
+}

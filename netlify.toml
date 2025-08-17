@@ -2,7 +2,7 @@
   command = "npm run build"
   publish = "_site"
 
-# Redirections utiles
+# URLs propres existantes
 [[redirects]]
   from = "/merci"
   to = "/merci.html"
@@ -15,7 +15,13 @@
   status = 200
   force = true
 
-# CSP compatible reCAPTCHA Netlify
+# SPA /dashboard : servir l'app même si l'URL commence par /dashboard
+[[redirects]]
+  from = "/dashboard/*"
+  to = "/index.html"
+  status = 200
+
+# Sécurité + reCAPTCHA
 [[headers]]
   for = "/*"
   [headers.values]

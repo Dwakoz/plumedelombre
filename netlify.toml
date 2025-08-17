@@ -2,7 +2,6 @@
   command = "npm run build"
   publish = "_site"
 
-# Conserver ces URL propres
 [[redirects]]
   from = "/merci"
   to = "/merci.html"
@@ -15,4 +14,40 @@
   status = 200
   force = true
 
-# IMPORTANT : aucune réécriture sur /admin/* pour laisser charger config.yml
+[[redirects]]
+  from = "/dashboard"
+  to = "/dashboard/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/dashboard/*"
+  to = "/dashboard/index.html"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+  Content-Security-Policy = '''
+    default-src 'self' https:;
+    script-src  'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/;
+    frame-src   'self' https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;
+    style-src   'self' 'unsafe-inline' https:;
+    img-src     'self' data: https:;
+    font-src    'self' data: https:;
+    connect-src 'self' https:;
+  '''
+
+[[headers]]
+  for = "/dashboard/*"
+  [headers.values]
+  Content-Security-Policy = '''
+    default-src 'self' https:;
+    script-src  'self' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net https://identity.netlify.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/;
+    frame-src   'self' https://identity.netlify.com https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;
+    style-src   'self' 'unsafe-inline' https:;
+    img-src     'self' data: https:;
+    font-src    'self' data: https:;
+    connect-src 'self' https:;
+  '''

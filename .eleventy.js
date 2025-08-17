@@ -1,29 +1,41 @@
-module.exports = function(eleventyConfig) {
-  // Fichiers statiques
-  eleventyConfig.addPassthroughCopy("static");
+module.exports = function (eleventyConfig) {
+  // Assets
   eleventyConfig.addPassthroughCopy("styles.css");
+  eleventyConfig.addPassthroughCopy({ "static": "uploads" });
+  eleventyConfig.addPassthroughCopy({ "dashboard": "dashboard" });
 
-  // Filtre date lisible (FR)
-  eleventyConfig.addFilter("readableDate", (value, locale = "fr-FR", options = {}) => {
-    if (!value) return "";
-    const d = new Date(value);
-    if (isNaN(d)) return String(value);
-    const fmt = { day: "2-digit", month: "long", year: "numeric", ...options };
-    return d.toLocaleDateString(locale, fmt);
+  // Collections
+  eleventyConfig.addCollection("redactions", (collectionApi) => {
+    return collectionApi
+      .getFilteredByGlob("content/redactions/**/*.md")
+      .sort((a, b) => b.date - a.date);
   });
 
-  // Date HTML YYYY-MM-DD
-  eleventyConfig.addFilter("htmlDate", (value) => {
-    const d = new Date(value);
-    if (isNaN(d)) return "";
-    return d.toISOString().split("T")[0];
+  eleventyConfig.addCollection("articles", (collectionApi) => {
+    return collectionApi
+      .getFilteredByGlob("content/articles/**/*.md")
+      .sort((a, b) => b.date - a.date);
+  });
+
+  // Filtre excerpt manquant
+  eleventyConfig.addFilter("excerpt", (value) => {
+    if (!value) return "";
+    const text = String(value)
+      .replace(/<[^>]+>/g, " ")   // retire HTML
+      .replace(/\s+/g, " ")       // compresse espaces
+      .trim();
+    return text.length > 200 ? text.slice(0, 200).trimEnd() + "…" : text;
   });
 
   return {
-    dir: { input: ".", output: "_site" },
-    templateFormats: ["njk", "md", "html"],
+    dir: {
+      input: ".",
+      output: "_site",
+      includes: "_includes",
+      data: "_data"
+    },
+    templateFormats: ["njk", "md", "html", "css"],
     htmlTemplateEngine: "njk",
-    markdownTemplateEngine: "njk",
-    passthroughFileCopy: true,
+    markdownTemplateEngine: "njk"
   };
 };

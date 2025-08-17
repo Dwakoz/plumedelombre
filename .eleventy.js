@@ -1,17 +1,16 @@
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addPassthroughCopy({ "src/dashboard": "dashboard" });
+  // Publier l’interface CMS et son config.yml
+  eleventyConfig.addPassthroughCopy({ "admin": "admin" });
+  // Publier le dossier d’uploads géré par le CMS
   eleventyConfig.addPassthroughCopy({ "static": "uploads" });
 
   return {
     dir: {
-      input: "src",
+      input: ".",
       output: "_site",
       includes: "_includes",
       data: "_data",
       layouts: "_includes/layouts"
-    },
-    htmlTemplateEngine: "njk",
-    markdownTemplateEngine: "njk",
-    templateFormats: ["njk", "md", "html", "css", "js", "yml"]
+    }
   };
 };

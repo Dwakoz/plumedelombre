@@ -33,3 +33,4 @@ collections:
       - { label: "Publication (média)", name: "publisher", widget: "string", required: false }
       - { label: "Date", name: "date", widget: "datetime", required: false }
       - { label: "Résumé court", name: "excerpt", widget: "text", required: false }
+ 

@@ -15,13 +15,20 @@
   status = 200
   force = true
 
-# SPA dashboard et CMS (hash router)
+# Servir le dashboard depuis un fichier dédié
+[[redirects]]
+  from = "/dashboard"
+  to = "/dashboard/index.html"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/dashboard/*"
   to = "/dashboard/index.html"
   status = 200
+  force = true
 
-# CSP par défaut du site
+# CSP par défaut du site (stricte, sans unsafe-eval)
 [[headers]]
   for = "/*"
   [headers.values]
@@ -35,15 +42,14 @@
     connect-src 'self' https:;
   '''
 
-# Assouplissement uniquement pour le dashboard/CMS
+# CSP assouplie uniquement pour le dashboard/CMS
 [[headers]]
   for = "/dashboard/*"
   [headers.values]
   Content-Security-Policy = '''
     default-src 'self' https:;
-    # Netlify CMS a besoin de 'unsafe-eval' et des CDN JS
-    script-src  'self' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/;
-    frame-src   'self' https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;
+    script-src  'self' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net https://identity.netlify.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/;
+    frame-src   'self' https://identity.netlify.com https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;
     style-src   'self' 'unsafe-inline' https:;
     img-src     'self' data: https:;
     font-src    'self' data: https:;

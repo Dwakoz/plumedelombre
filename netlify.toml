@@ -15,19 +15,34 @@
   status = 200
   force = true
 
-# SPA /dashboard : servir l'app même si l'URL commence par /dashboard
+# SPA dashboard et CMS (hash router)
 [[redirects]]
   from = "/dashboard/*"
-  to = "/index.html"
+  to = "/dashboard/index.html"
   status = 200
 
-# Sécurité + reCAPTCHA
+# CSP par défaut du site
 [[headers]]
   for = "/*"
   [headers.values]
   Content-Security-Policy = '''
     default-src 'self' https:;
     script-src  'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/;
+    frame-src   'self' https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;
+    style-src   'self' 'unsafe-inline' https:;
+    img-src     'self' data: https:;
+    font-src    'self' data: https:;
+    connect-src 'self' https:;
+  '''
+
+# Assouplissement uniquement pour le dashboard/CMS
+[[headers]]
+  for = "/dashboard/*"
+  [headers.values]
+  Content-Security-Policy = '''
+    default-src 'self' https:;
+    # Netlify CMS a besoin de 'unsafe-eval' et des CDN JS
+    script-src  'self' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/;
     frame-src   'self' https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;
     style-src   'self' 'unsafe-inline' https:;
     img-src     'self' data: https:;

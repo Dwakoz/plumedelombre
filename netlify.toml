@@ -2,7 +2,7 @@
   command = "npm run build"
   publish = "_site"
 
-# URLs propres existantes
+# URLs propres
 [[redirects]]
   from = "/merci"
   to = "/merci.html"
@@ -15,7 +15,7 @@
   status = 200
   force = true
 
-# Servir le dashboard depuis un fichier dédié
+# Dashboard/CMS servi depuis un fichier dédié
 [[redirects]]
   from = "/dashboard"
   to = "/dashboard/index.html"
@@ -28,7 +28,7 @@
   status = 200
   force = true
 
-# CSP par défaut du site (stricte, sans unsafe-eval)
+# CSP par défaut (stricte, sans eval)
 [[headers]]
   for = "/*"
   [headers.values]

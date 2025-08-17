@@ -19,7 +19,7 @@ collections:
       - { label: "Titre", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Texte", name: "body", widget: "markdown" }
-      
+
   - name: "articles"
     label: "Articles (liens)"
     folder: "content/articles"

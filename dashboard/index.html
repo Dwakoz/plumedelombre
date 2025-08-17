@@ -4,24 +4,54 @@
   <meta charset="utf-8">
   <title>Dashboard — Plume de l’Ombre</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Styles CMS -->
   <link rel="stylesheet" href="https://unpkg.com/netlify-cms@^2/dist/cms.css">
 </head>
 <body>
-  <!-- Netlify Identity (login) -->
+  <script>window.CMS_MANUAL_INIT = true;</script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <!-- Netlify CMS -->
   <script src="https://unpkg.com/netlify-cms@^2/dist/netlify-cms.js"></script>
-
   <script>
-    // Redirection vers /dashboard après login si nécessaire
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', user => {
-        if (!user) window.netlifyIdentity.on('login', () => window.location.reload());
-      });
-    }
+    CMS.init({
+      config: {
+        backend: { name: "git-gateway", branch: "main" },
+        media_folder: "static/uploads",
+        public_folder: "/uploads",
+        publish_mode: "editorial_workflow",
+        locale: "fr",
+        collections: [
+          {
+            name: "redactions",
+            label: "Rédactions",
+            folder: "content/redactions",
+            create: true,
+            slug: "{{slug}}",
+            extension: "md",
+            format: "frontmatter",
+            fields: [
+              { label: "Titre", name: "title", widget: "string" },
+              { label: "Date", name: "date", widget: "datetime" },
+              { label: "Texte", name: "body", widget: "markdown" }
+            ]
+          },
+          {
+            name: "articles",
+            label: "Articles (liens)",
+            folder: "content/articles",
+            create: true,
+            slug: "{{slug}}",
+            extension: "md",
+            format: "frontmatter",
+            fields: [
+              { label: "Titre", name: "title", widget: "string" },
+              { label: "URL de l’article", name: "url", widget: "string" },
+              { label: "Publication (média)", name: "publisher", widget: "string", required: false },
+              { label: "Date", name: "date", widget: "datetime", required: false },
+              { label: "Résumé court", name: "excerpt", widget: "text", required: false }
+            ]
+          }
+        ]
+      }
+    });
   </script>
 </body>
 </html>

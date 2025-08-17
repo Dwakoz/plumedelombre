@@ -1,95 +1,55 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Plume de l’ombre</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Plume de l’ombre — Atelier d’écriture poétique et moderne. Rédaction, correction, traduction.">
-  <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
+---
+layout: base.njk
+title: Accueil — Plume de l’Ombre
+---
 
-  <header>
-    <div class="wrap">
-      <nav>
-        <div class="brand">Plume de l’ombre</div>
-        <div class="menu">
-          <a href="/">Accueil</a>
-          <a href="/services">Services</a>
-          <a href="/articles">Articles</a>
-          <a href="/contact" class="btn">Contact</a>
-        </div>
-      </nav>
-    </div>
-  </header>
+<section class="hero" aria-labelledby="hero-title">
+  <p class="badge">FR / EN</p>
+  <h1 id="hero-title">Vos idées, mes mots.</h1>
+  <p>Ghostwriter bilingue FR/EN. J’écris à votre place, dans votre style.</p>
+  <div style="display:flex;gap:12px;margin-top:10px">
+    <a class="btn" href="/contact.html" aria-label="Contacter Plume de l’Ombre pour discuter d’un projet">Contactez-moi</a>
+    <a class="btn ghost" href="/portfolio.html" aria-label="Voir toutes mes rédactions">Voir des rédactions</a>
+  </div>
+</section>
 
-  <main class="wrap">
+<section id="portfolio" aria-labelledby="redac-title">
+  <h2 id="redac-title">Dernières rédactions</h2>
+  <div class="grid cols-3" role="list" id="redactions-dyn">
+  {% for item in collections.redactions | reverse %}
+    {% if loop.index0 < 6 %}
+      <article class="card" role="listitem">
+        <h3>{{ item.data.title }}</h3>
+        <p class="muted">Rédaction</p>
+        <p>{{ item.templateContent | excerpt }}</p>
+        <a href="{{ item.url }}" aria-label="Lire la rédaction complète : {{ item.data.title }}">Lire la rédaction complète</a>
+      </article>
+    {% endif %}
+  {% endfor %}
+  {% if (collections.redactions | length) == 0 %}
+    <p class="muted">Aucune rédaction publiée pour le moment.</p>
+  {% endif %}
+  </div>
+</section>
 
-    <!-- Hero -->
-    <section class="hero">
-      <h1>Bienvenue sur Plume de l’ombre</h1>
-      <p class="muted">Un atelier où les idées prennent forme, avec des mots précis et une plume poétique.</p>
-      <a href="/contact" class="btn">Me contacter</a>
-    </section>
-
-    <!-- À propos -->
-    <section>
-      <h2>À propos</h2>
-      <p>Plume de l’ombre est un atelier d’écriture moderne et poétique.
-      Ici, récits, articles et projets se tissent avec rigueur et imagination.</p>
-    </section>
-
-    <!-- Services -->
-    <section>
-      <h2>Services</h2>
-      <div class="grid cols-3">
-        <div class="card">
-          <h3>Rédaction</h3>
-          <p class="muted">Articles, récits, mémoires, scripts — adaptés à vos besoins, toujours clairs et impactants.</p>
-        </div>
-        <div class="card">
-          <h3>Correction</h3>
-          <p class="muted">Relecture attentive et ajustements pour des textes fluides et impeccables.</p>
-        </div>
-        <div class="card">
-          <h3>Traduction</h3>
-          <p class="muted">Anglais ↔ Français avec précision et respect du ton original.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Articles -->
-    <section>
-      <h2>Articles récents</h2>
-      <ul class="list">
-        {% for post in collections.post | reverse | slice(0,3) %}
-          <li class="card">
-            <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
-            {% if post.date %}
-              <p class="muted">
-                <time datetime="{{ post.date | htmlDate }}">{{ post.date | readableDate }}</time>
-              </p>
-            {% endif %}
-            {% if post.data.description %}<p>{{ post.data.description }}</p>{% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-
-    <!-- Contact -->
-    <section>
-      <h2>Contact</h2>
-      <p>Une idée ? Un projet ? Écrivez-moi pour en discuter.</p>
-      <a href="/contact" class="btn ghost">Formulaire de contact</a>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <p>© Plume de l’ombre — Tous droits réservés.</p>
-    </div>
-  </footer>
-
-</body>
-</html>
+<section id="articles" aria-labelledby="art-title">
+  <h2 id="art-title">Articles publiés en ligne</h2>
+  <div class="grid cols-3" role="list">
+  {% for article in collections.articles | reverse %}
+    {% if loop.index0 < 6 %}
+      <article class="card" role="listitem">
+        <h3>{{ article.data.title }}</h3>
+        <p class="muted">{{ article.data.publisher or '' }}</p>
+        <p>{{ article.data.excerpt or '' }}</p>
+        <p>
+          <a class="btn ghost" href="{{ article.data.url }}" target="_blank" rel="noopener"
+             aria-label="Lire l’article externe : {{ article.data.title }}">Lire</a>
+        </p>
+      </article>
+    {% endif %}
+  {% endfor %}
+  {% if (collections.articles | length) == 0 %}
+    <p class="muted">Aucun article référencé pour le moment.</p>
+  {% endif %}
+  </div>
+</section>

@@ -1,7 +1,8 @@
 module.exports = function (eleventyConfig) {
-  // Publier le CMS et les uploads
-  eleventyConfig.addPassthroughCopy({ "dashboard": "dashboard" });
+  // Publier les assets nécessaires
+  eleventyConfig.addPassthroughCopy("styles.css");
   eleventyConfig.addPassthroughCopy({ "static": "uploads" });
+  eleventyConfig.addPassthroughCopy({ "dashboard": "dashboard" });
 
   return {
     dir: {
@@ -9,6 +10,8 @@ module.exports = function (eleventyConfig) {
       output: "_site",
       includes: "_includes",
       data: "_data"
-    }
+    },
+    // inclut CSS pour éviter qu’Eleventy l’ignore
+    templateFormats: ["njk", "md", "html", "css"]
   };
 };

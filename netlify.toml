@@ -1,36 +1,30 @@
 [build]
-  publish = "_site"
   command = "npm run build"
+  publish = "_site"
 
-# Sécurité par défaut (site public)
-[[headers]]
-for = "/*"
-  [headers.values]
-  Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
-  X-Content-Type-Options = "nosniff"
-  X-Frame-Options = "DENY"
-  Referrer-Policy = "strict-origin-when-cross-origin"
-  Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-  Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data: https:; script-src 'self'; connect-src 'self'"
-
-# Back-office /dashboard : élargir CSP pour Decap CMS + Identity
-[[headers]]
-for = "/dashboard/*"
-  [headers.values]
-  Content-Security-Policy = """
-    default-src 'self';
-    img-src 'self' data: https:;
-    style-src 'self' 'unsafe-inline';
-    font-src 'self' data: https:;
-    script-src 'self' 'unsafe-eval' https://identity.netlify.com;
-    connect-src 'self' https://identity.netlify.com https://api.netlify.com;
-    frame-src https://identity.netlify.com;
-    worker-src 'self' blob:;
-    child-src blob:
-  """
-
-# Bloquer l’ancienne route /admin
+# Redirections utiles
 [[redirects]]
-  from = "/admin/*"
-  to = "/404.html"
-  status = 404
+  from = "/merci"
+  to = "/merci.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200
+  force = true
+
+# CSP compatible reCAPTCHA Netlify
+[[headers]]
+  for = "/*"
+  [headers.values]
+  Content-Security-Policy = '''
+    default-src 'self' https:;
+    script-src  'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/;
+    frame-src   'self' https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;
+    style-src   'self' 'unsafe-inline' https:;
+    img-src     'self' data: https:;
+    font-src    'self' data: https:;
+    connect-src 'self' https:;
+  '''

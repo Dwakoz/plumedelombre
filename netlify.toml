@@ -15,7 +15,7 @@
   status = 200
   force = true
 
-# Dashboard/CMS servi depuis un fichier dédié
+# Dashboard CMS
 [[redirects]]
   from = "/dashboard"
   to = "/dashboard/index.html"
@@ -28,7 +28,7 @@
   status = 200
   force = true
 
-# CSP par défaut (stricte, sans eval)
+# CSP site
 [[headers]]
   for = "/*"
   [headers.values]
@@ -42,7 +42,7 @@
     connect-src 'self' https:;
   '''
 
-# CSP assouplie uniquement pour le dashboard/CMS
+# CSP assouplie pour le CMS
 [[headers]]
   for = "/dashboard/*"
   [headers.values]

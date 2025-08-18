@@ -1,55 +1,82 @@
----
-layout: base.njk
-title: Accueil — Plume de l’Ombre
----
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Plume de l’ombre</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plume de l’ombre — Atelier d’écriture.">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
 
-<section class="hero" aria-labelledby="hero-title">
-  <p class="badge">FR / EN</p>
-  <h1 id="hero-title">Vos idées, mes mots.</h1>
-  <p>Ghostwriter bilingue FR/EN. J’écris à votre place, dans votre style.</p>
-  <div style="display:flex;gap:12px;margin-top:10px">
-    <a class="btn" href="/contact.html" aria-label="Contacter Plume de l’Ombre pour discuter d’un projet">Contactez-moi</a>
-    <a class="btn ghost" href="/portfolio.html" aria-label="Voir toutes mes rédactions">Voir des rédactions</a>
-  </div>
-</section>
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="brand">Plume de l’ombre</div>
+      <div class="menu">
+        <a href="/">Accueil</a>
+        <a href="#services">Services</a>
 
-<section id="portfolio" aria-labelledby="redac-title">
-  <h2 id="redac-title">Textes en vers</h2>
-  <div class="grid cols-3" role="list" id="redactions-dyn">
-  {% for item in collections.redactions | reverse %}
-    {% if loop.index0 < 6 %}
-      <article class="card" role="listitem">
-        <h3>{{ item.data.title }}</h3>
-        <p class="muted">Rédaction</p>
-        <p>{{ item.templateContent | excerpt }}</p>
-        <a href="{{ item.url }}" aria-label="Lire la rédaction complète : {{ item.data.title }}">Lire la rédaction complète</a>
-      </article>
-    {% endif %}
-  {% endfor %}
-  {% if (collections.redactions | length) == 0 %}
-    <p class="muted">Aucune rédaction publiée pour le moment.</p>
-  {% endif %}
-  </div>
-</section>
+        <!-- Portfolio devient un menu déroulant -->
+        <div class="dropdown" id="dd-portfolio">
+          <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="menu-portfolio" type="button">
+            Portfolio <span class="arrow" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" id="menu-portfolio" role="menu">
+            <a href="/portfolio" role="menuitem">Rédaction</a>
+            <a href="/articles" role="menuitem">Articles</a>
+          </div>
+        </div>
 
-<section id="articles" aria-labelledby="art-title">
-  <h2 id="art-title">Articles publiés en ligne</h2>
-  <div class="grid cols-3" role="list">
-  {% for article in collections.articles | reverse %}
-    {% if loop.index0 < 6 %}
-      <article class="card" role="listitem">
-        <h3>{{ article.data.title }}</h3>
-        <p class="muted">{{ article.data.publisher or '' }}</p>
-        <p>{{ article.data.excerpt or '' }}</p>
-        <p>
-          <a class="btn ghost" href="{{ article.data.url }}" target="_blank" rel="noopener"
-             aria-label="Lire l’article externe : {{ article.data.title }}">Lire</a>
-        </p>
-      </article>
-    {% endif %}
-  {% endfor %}
-  {% if (collections.articles | length) == 0 %}
-    <p class="muted">Aucun article référencé pour le moment.</p>
-  {% endif %}
+        <!-- Lien Articles supprimé du menu principal -->
+        <!-- <a href="/articles">Articles</a> -->
+
+        <a href="#apropos">À propos</a>
+        <a href="/contact" class="btn">Contact</a>
+      </div>
+    </nav>
   </div>
-</section>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>Bienvenue sur Plume de l’ombre</h1>
+    <p class="muted">Atelier d’écriture. Rédaction, correction, traduction.</p>
+    <a href="/contact" class="btn">Me contacter</a>
+  </section>
+
+  <section id="services">
+    <h2>Services</h2>
+    <div class="grid cols-3">
+      <div class="card"><h3>Rédaction</h3><p class="muted">Articles, récits, mémoires, scripts.</p></div>
+      <div class="card"><h3>Correction</h3><p class="muted">Relecture, cohérence, style.</p></div>
+      <div class="card"><h3>Traduction</h3><p class="muted">Anglais ↔ Français.</p></div>
+    </div>
+  </section>
+
+  <section id="apropos">
+    <h2>À propos</h2>
+    <p class="muted">Méthode, valeurs et contact.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© Plume de l’ombre — Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const dd=document.getElementById('dd-portfolio'); if(!dd) return;
+  const btn=dd.querySelector('.dropdown-toggle'), menu=dd.querySelector('.dropdown-menu');
+  const close=()=>{dd.classList.remove('open');btn.setAttribute('aria-expanded','false');};
+  btn.addEventListener('click',e=>{e.preventDefault();dd.classList.toggle('open');btn.setAttribute('aria-expanded',dd.classList.contains('open')?'true':'false');});
+  document.addEventListener('click',e=>{if(!dd.contains(e.target)) close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape') close();});
+  menu.addEventListener('click',e=>{if(e.target.tagName==='A') close();});
+})();
+</script>
+
+</body>
+</html>

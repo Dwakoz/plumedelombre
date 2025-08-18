@@ -1,88 +1,20 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <title>Portfolio — Plume de l’ombre</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Portfolio — Rédaction et Articles." />
-  <link rel="stylesheet" href="/styles.css" />
-</head>
-<body>
+---
+layout: base.njk
+title: Portfolio — Plume de l’Ombre
+---
 
-<header>
-  <div class="wrap">
-    <nav>
-      <div class="brand">Plume de l’ombre</div>
-      <div class="menu">
-        <a href="/">Accueil</a>
-        <a href="/#services">Services</a>
+<section id="portfolio">
+  <h1>Rédactions</h1>
+  <p class="muted">Sélection de travaux. Textes complets sur demande.</p>
 
-        <div class="dropdown" id="dd-portfolio">
-          <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="menu-portfolio" type="button">
-            Portfolio <span class="arrow" aria-hidden="true"></span>
-          </button>
-          <div class="dropdown-menu" id="menu-portfolio" role="menu">
-            <a href="#redaction" role="menuitem">Rédaction</a>
-            <a href="#articles" role="menuitem">Articles</a>
-          </div>
-        </div>
-
-        <!-- Lien Articles séparé supprimé ici aussi -->
-        <!-- <a href="/articles">Articles</a> -->
-
-        <a href="/contact" class="btn">Contact</a>
-      </div>
-    </nav>
+  <div class="grid cols-3" role="list">
+  {% for item in collections.redactions | reverse %}
+    <article class="card" role="listitem">
+      <h3>{{ item.data.title }}</h3>
+      <p class="muted">Rédaction</p>
+      <p>{{ item.templateContent | excerpt }}</p>
+      <a href="{{ item.url }}" aria-label="Lire la rédaction complète">Lire la rédaction complète</a>
+    </article>
+  {% endfor %}
   </div>
-</header>
-
-<main class="wrap">
-
-  <section class="hero">
-    <h1>Portfolio</h1>
-    <p class="muted">Sélection de travaux en <strong>rédaction</strong> et <strong>articles</strong>.</p>
-  </section>
-
-  <section id="redaction">
-    <h2>Rédaction</h2>
-    <div class="grid cols-2">
-      <!-- Remplace par tes contenus réels -->
-      <article class="card"><h3>Étude de cas — Client A</h3><p class="muted">Synthèse narrative, 1200 mots.</p></article>
-      <article class="card"><h3>Script vidéo — Série B</h3><p class="muted">Script court, ton pédagogique.</p></article>
-    </div>
-  </section>
-
-  <section id="articles">
-    <h2>Articles</h2>
-    <ul class="list">
-      {% for post in collections.post | reverse | slice(0,6) %}
-        <li class="card">
-          <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
-          {% if post.data.description %}<p class="muted">{{ post.data.description }}</p>{% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <p>© Plume de l’ombre — Tous droits réservés.</p>
-  </div>
-</footer>
-
-<script>
-(function(){
-  const dd=document.getElementById('dd-portfolio'); if(!dd) return;
-  const btn=dd.querySelector('.dropdown-toggle'), menu=dd.querySelector('.dropdown-menu');
-  const close=()=>{dd.classList.remove('open');btn.setAttribute('aria-expanded','false');};
-  btn.addEventListener('click',e=>{e.preventDefault();dd.classList.toggle('open');btn.setAttribute('aria-expanded',dd.classList.contains('open')?'true':'false');});
-  document.addEventListener('click',e=>{if(!dd.contains(e.target)) close();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape') close();});
-  menu.addEventListener('click',e=>{if(e.target.tagName==='A') close();});
-})();
-</script>
-
-</body>
-</html>
+</section>

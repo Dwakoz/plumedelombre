@@ -1,0 +1,20 @@
+---
+layout: base.njk
+title: Portfolio — Plume de l’Ombre
+---
+
+<section id="portfolio">
+  <h1>Rédactions</h1>
+  <p class="muted">Sélection de travaux. Textes complets sur demande.</p>
+
+  <div class="grid cols-3" role="list">
+  {% for item in collections.redactions | reverse %}
+    <article class="card" role="listitem">
+      <h3>{{ item.data.title }}</h3>
+      <p class="muted">Rédaction</p>
+      <p>{{ item.templateContent | excerpt }}</p>
+      <a href="{{ item.url }}" aria-label="Lire la rédaction complète">Lire la rédaction complète</a>
+    </article>
+  {% endfor %}
+  </div>
+</section>

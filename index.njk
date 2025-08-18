@@ -1,3 +1,5 @@
+index
+
 ---
 layout: base.njk
 title: Accueil — Plume de l’Ombre
@@ -9,11 +11,11 @@ title: Accueil — Plume de l’Ombre
   <p>Ghostwriter bilingue FR/EN. J’écris à votre place, dans votre style.</p>
   <div style="display:flex;gap:12px;margin-top:10px">
     <a class="btn" href="/contact.html" aria-label="Contacter Plume de l’Ombre pour discuter d’un projet">Contactez-moi</a>
-    <a class="btn ghost" href="/portfolio.html" aria-label="Voir toutes mes rédactions">Voir des rédactions</a>
+    <a class="btn ghost" href="/redaction.html" aria-label="Voir toutes mes rédactions">Voir des rédactions</a>
   </div>
 </section>
 
-<section id="portfolio" aria-labelledby="redac-title">
+<section id="redaction" aria-labelledby="redac-title">
   <h2 id="redac-title">Textes en vers</h2>
   <div class="grid cols-3" role="list" id="redactions-dyn">
   {% for item in collections.redactions | reverse %}

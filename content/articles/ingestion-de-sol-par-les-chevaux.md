@@ -1,7 +1,7 @@
 ---
 title: "[Résumé] Ingestion de sol par les chevaux vivant au pâturage"
 url: https://sciencesequines.fr/resume-ingestion-de-sol-par-les-chevaux-de-sport-au-paturage-jurjanz-stefan-et-al-2021/
-date: 2025-08-16T23:41:00.000+02:00
+date: 2024-09-01T21:41:00.000Z
 excerpt: >-
   L’ingestion de sol chez les chevaux est une question qui mérite d’être étudiée
   en raison des problèmes sanitaires qu’elle peut engendrer, tels que des

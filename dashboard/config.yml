@@ -8,9 +8,9 @@ publish_mode: editorial_workflow
 locale: "fr"
 
 collections:
-  - name: "redactions"
-    label: "Rédactions"
-    folder: "content/redactions"
+  - name: "Textes en vers"
+    label: "Textes en vers"
+    folder: "content/Textes en vers"
     create: true
     slug: "{{slug}}"
     extension: "md"

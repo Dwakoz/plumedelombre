@@ -3,18 +3,22 @@ layout: base.njk
 title: Textes en vers — Plume de l’Ombre
 ---
 
-<section id="Textesenvers">
+<section class="page-head">
   <h1>Textes en vers</h1>
-  <p class="muted">Sélection de travaux.</p>
+  <p class="muted">Une sélection de textes poétiques.</p>
+</section>
 
-  <div class="grid cols-3" role="list">
-  {% for item in collections.Textes en vers | reverse %}
+<section class="listing" role="list">
+  <div class="grid cols-3">
+  {% for item in collections.textes | reverse %}
     <article class="card" role="listitem">
-      <h3>{{ item.data.title }}</h3>
-      <p class="muted">Textes en vers</p>
-      <p>{{ item.templateContent | excerpt }}</p>
-      <a href="{{ item.url }}" aria-label="Lire la rédaction complète">Lire le texte en ver complet.</a>
+      <h2><a href="{{ item.url }}">{{ item.data.title }}</a></h2>
+      <p>{{ item.templateContent | striptags | truncate(150, true, '…') }}</p>
+      <a class="btn ghost" href="{{ item.url }}" aria-label="Lire : {{ item.data.title }}">Lire</a>
     </article>
   {% endfor %}
+  {% if (collections.textes | length) == 0 %}
+    <p class="muted">Aucun texte pour le moment.</p>
+  {% endif %}
   </div>
 </section>

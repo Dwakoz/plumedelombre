@@ -14,9 +14,33 @@ title: Accueil — Plume de l’Ombre
 </section>
 
 <section id="redaction" aria-labelledby="redac-title">
-...
+  <h2 id="redac-title">Textes en vers</h2>
+  <div class="grid cols-3" role="list" id="redactions-dyn">
+  {% for item in collections.redactions | reverse %}
+    {% if loop.index0 < 6 %}
+      <article class="card" role="listitem">
+        <h3>{{ item.data.title }}</h3>
+        <p class="muted">Rédaction</p>
+        <p>{{ item.templateContent | excerpt }}</p>
+        <a href="{{ item.url }}" aria-label="Lire la rédaction complète : {{ item.data.title }}">Lire la rédaction complète</a>
+      </article>
+    {% endif %}
+  {% endfor %}
+  {% if (collections.redactions | length) == 0 %}
+    <p class="muted">Aucune rédaction publiée pour le moment.</p>
+  {% endif %}
+  </div>
+</section>
+
+<section id="articles" aria-labelledby="art-title">
+  <h2 id="art-title">Articles publiés en ligne</h2>
+  <div class="grid cols-3" role="list">
+  {% for article in collections.articles | reverse %}
+    {% if loop.index0 < 6 %}
+      <article class="card" role="listitem">
+        <h3>{{ article.data.title }}</h3>
         <p class="muted">{{ article.data.publisher or '' }}</p>
-        <p>{{ article.data.excerpt | striptags | truncate(150, true, '…') }}</p>
+        <p>{{ article.data.excerpt or '' }}</p>
         <p>
           <a class="btn ghost" href="{{ article.data.url }}" target="_blank" rel="noopener"
              aria-label="Lire l’article externe : {{ article.data.title }}">Lire</a>

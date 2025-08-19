@@ -2,6 +2,9 @@
   command = "npm run build"
   publish = "_site"
 [[redirects]]
-  from = "/portfolio"
-  to = "/redaction"
-  status = 301
+from = "/*"
+to = "https://plumedelombre.fr/:splat"
+status = 301
+force = true
+
+

@@ -5,9 +5,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "dashboard": "dashboard" });
 
   // Collections
-  eleventyConfig.addCollection("redactions", (collectionApi) => {
+  eleventyConfig.addCollection("textes", (collectionApi) => {
     return collectionApi
-      .getFilteredByGlob("content/redactions/**/*.md")
+      .getFilteredByGlob("content/textes/**/*.md")
       .sort((a, b) => b.date - a.date);
   });
 

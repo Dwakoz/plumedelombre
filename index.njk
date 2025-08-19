@@ -40,7 +40,7 @@ title: Accueil — Plume de l’Ombre
       <article class="card" role="listitem">
         <h3>{{ article.data.title }}</h3>
         <p class="muted">{{ article.data.publisher or '' }}</p>
-        <p>{{ article.data.excerpt or '' }}</p>
+        <p>{{ (article.data.excerpt or '') | striptags | truncate(150, true, '…') }}</p>
         <p>
           <a class="btn ghost" href="{{ article.data.url }}" target="_blank" rel="noopener"
              aria-label="Lire l’article externe : {{ article.data.title }}">Lire</a>

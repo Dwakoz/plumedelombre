@@ -1,4 +1,4 @@
 {
-  "layout": "redaction.njk",
-  "permalink": "/redactions/{{ page.fileSlug }}/index.html"
+  "layout": "textes.njk",
+  "permalink": "/textes/{{ page.fileSlug }}/index.html"
 }

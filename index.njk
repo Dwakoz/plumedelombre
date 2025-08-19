@@ -9,25 +9,25 @@ title: Accueil — Plume de l’Ombre
   <p>Ghostwriter bilingue FR/EN. J’écris à votre place, dans votre style.</p>
   <div style="display:flex;gap:12px;margin-top:10px">
     <a class="btn" href="/contact.html" aria-label="Contacter Plume de l’Ombre pour discuter d’un projet">Contactez-moi</a>
-    <a class="btn ghost" href="/redaction.html" aria-label="Voir toutes mes rédactions">Voir des rédactions</a>
+    <a class="btn ghost" href="/textes.html" aria-label="Voir des textes en vers">Voir des textes</a>
   </div>
 </section>
 
-<section id="redaction" aria-labelledby="redac-title">
-  <h2 id="redac-title">Textes en vers</h2>
-  <div class="grid cols-3" role="list" id="redactions-dyn">
+<section id="textes" aria-labelledby="txt-title">
+  <h2 id="txt-title">Textes en vers</h2>
+  <div class="grid cols-3" role="list">
   {% for item in collections.textes | reverse %}
     {% if loop.index0 < 6 %}
       <article class="card" role="listitem">
-        <h3>{{ item.data.title }}</h3>
-        <p class="muted">Rédaction</p>
-        <p>{{ item.templateContent | excerpt }}</p>
-        <a href="{{ item.url }}" aria-label="Lire la rédaction complète : {{ item.data.title }}">Lire la rédaction complète</a>
+        <h3><a href="{{ item.url }}">{{ item.data.title }}</a></h3>
+        <p class="muted">Texte</p>
+        <p>{{ item.templateContent | striptags | truncate(150, true, '…') }}</p>
+        <a class="btn ghost" href="{{ item.url }}" aria-label="Lire : {{ item.data.title }}">Lire</a>
       </article>
     {% endif %}
   {% endfor %}
-  {% if (collections.redactions | length) == 0 %}
-    <p class="muted">Aucune rédaction publiée pour le moment.</p>
+  {% if (collections.textes | length) == 0 %}
+    <p class="muted">Aucun texte pour le moment.</p>
   {% endif %}
   </div>
 </section>

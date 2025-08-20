@@ -3,11 +3,8 @@ title: Jean-Pierre Colbert
 date: 2025-08-16T20:39:00.000Z
 ---
 « Bonjour Monsieur, comment ça va ? »
-
 Monsieur… ?
-
 Ça faisait bien longtemps
-
 Qu’on ne m’avait pas appelé comme ça
 
 D’habitude, on me donne du « mon pauvre »

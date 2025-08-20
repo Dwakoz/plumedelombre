@@ -1,29 +1,14 @@
 module.exports = function (eleventyConfig) {
-  // Assets
   eleventyConfig.addPassthroughCopy("styles.css");
   eleventyConfig.addPassthroughCopy({ "static": "uploads" });
   eleventyConfig.addPassthroughCopy({ "dashboard": "dashboard" });
 
-  // Markdown: conserver les sauts de ligne
-  const md = markdownIt({
-    html: true,
-    breaks: true,      // ← transforme "\n" en <br>
-    linkify: true
-  });
-  eleventyConfig.setLibrary("md", md);
-
-  // Collections
-  eleventyConfig.addCollection("textes", (collectionApi) => {
-    return collectionApi
-      .getFilteredByGlob("content/textes/**/*.md")
-      .sort((a, b) => b.date - a.date);
-  });
-
-  eleventyConfig.addCollection("articles", (collectionApi) => {
-    return collectionApi
-      .getFilteredByGlob("content/articles/**/*.md")
-      .sort((a, b) => b.date - a.date);
-  });
+  eleventyConfig.addCollection("textes", (c) =>
+    c.getFilteredByGlob("content/textes/**/*.md").sort((a, b) => b.date - a.date)
+  );
+  eleventyConfig.addCollection("articles", (c) =>
+    c.getFilteredByGlob("content/articles/**/*.md").sort((a, b) => b.date - a.date)
+  );
 
   return {
     dir: { input: ".", output: "_site", includes: "_includes", data: "_data" },

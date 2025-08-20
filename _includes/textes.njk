@@ -1,10 +1,10 @@
 ---
 layout: base.njk
 ---
-
-<section class="page-head">
-  <h1>Textes en vers</h1>
-</section>
+<style>
+  /* Conserve les sauts de ligne des textes sans impacter le reste du site */
+  .prose { white-space: pre-line; }
+</style>
 
 <article class="prose">
   {{ content | safe }}

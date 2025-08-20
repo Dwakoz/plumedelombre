@@ -5,6 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ title }}</title>
   <link rel="stylesheet" href="/styles.css" />
+  <style>
+    /* Menu déroulant simple */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 180px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      z-index: 1;
+    }
+    .dropdown-content a {
+      display: block;
+      padding: 8px 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .dropdown-content a:hover {
+      background-color: #f5f5f5;
+    }
+    .dropdown:hover .dropdown-content { display: block; }
+  </style>
 </head>
 <body>
   <header>
@@ -14,9 +36,16 @@
         <div class="menu" role="menubar">
           <a role="menuitem" href="/">Accueil</a>
           <a role="menuitem" href="/services.njk">Services</a>
-          <a role="menuitem" href="/textes.html">Textes en vers</a>
-          <a role="menuitem" href="/fiction.html">Fiction</a>
-          <a role="menuitem" href="/articles.html">Articles</a>
+
+          <div class="dropdown">
+            <a role="menuitem" href="#">Portfolio ▾</a>
+            <div class="dropdown-content">
+              <a href="/textes.html">Textes en vers</a>
+              <a href="/fiction.html">Fiction</a>
+              <a href="/articles.html">Articles</a>
+            </div>
+          </div>
+
           <a role="menuitem" href="/temoignages.html">Témoignages</a>
           <a role="menuitem" href="/apropos.html">À propos</a>
           <a role="menuitem" class="btn" href="/contact.html">Contact</a>
@@ -31,7 +60,7 @@
 
   <footer>
     <div class="wrap">
-      <p>© <span id="y"></span> Plume de l’Ombre — Rédaction & traduction. Tous droits réservés.</p>
+      <p>© <span id="y"></span> Plume de l’Ombre — Portfolio. Tous droits réservés.</p>
     </div>
   </footer>
 

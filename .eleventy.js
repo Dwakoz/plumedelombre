@@ -4,6 +4,14 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "static": "uploads" });
   eleventyConfig.addPassthroughCopy({ "dashboard": "dashboard" });
 
+  // Markdown: conserver les sauts de ligne
+  const md = markdownIt({
+    html: true,
+    breaks: true,      // ← transforme "\n" en <br>
+    linkify: true
+  });
+  eleventyConfig.setLibrary("md", md);
+
   // Collections
   eleventyConfig.addCollection("textes", (collectionApi) => {
     return collectionApi

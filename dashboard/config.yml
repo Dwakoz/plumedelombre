@@ -18,7 +18,22 @@ collections:
     fields:
       - { label: "Titre", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime", required: false }
-      - { label: "Texte", name: "body", widget: "markdown" }
+      - label: "Texte"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - link
+          - heading-one
+          - heading-two
+          - heading-three
+          - quote
+          - code
+          - bulleted-list
+          - numbered-list
+        editor_components: []
+        sanitize_preview: false
 
   - name: "articles"
     label: "Articles (liens)"
@@ -32,4 +47,15 @@ collections:
       - { label: "URL de l’article", name: "url", widget: "string" }
       - { label: "Publication (média)", name: "publisher", widget: "string", required: false }
       - { label: "Date", name: "date", widget: "datetime", required: false }
-      - { label: "Résumé court", name: "excerpt", widget: "text", required: false }
+      - label: "Résumé court"
+        name: "excerpt"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - link
+          - quote
+          - bulleted-list
+          - numbered-list
+        editor_components: []
+        sanitize_preview: false

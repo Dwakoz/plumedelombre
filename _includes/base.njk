@@ -6,26 +6,46 @@
   <title>{{ title }}</title>
   <link rel="stylesheet" href="/styles.css" />
   <style>
-    /* Menu déroulant simple */
+    /* Dropdown lisible (clair + sombre) */
     .dropdown { position: relative; display: inline-block; }
+    .dropdown > a { cursor: pointer; }
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: #fff;
-      min-width: 180px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-      z-index: 1;
-    }
-    .dropdown-content a {
-      display: block;
-      padding: 8px 12px;
-      text-decoration: none;
-      color: inherit;
-    }
-    .dropdown-content a:hover {
-      background-color: #f5f5f5;
+      top: 100%;
+      left: 0;
+      min-width: 220px;
+      padding: 6px 0;
+      background: #ffffff;
+      color: #111;
+      border: 1px solid rgba(0,0,0,.08);
+      box-shadow: 0 12px 30px rgba(0,0,0,.15);
+      border-radius: 8px;
+      z-index: 1000;
     }
     .dropdown:hover .dropdown-content { display: block; }
+    .dropdown-content a {
+      display: block;
+      padding: 10px 14px;
+      text-decoration: none;
+      color: #111;         /* force couleur lisible */
+      opacity: 1;          /* annule styles globaux éventuels */
+      font-weight: 600;
+    }
+    .dropdown-content a:hover {
+      background: #f2f5f9;
+    }
+    /* Mode sombre */
+    @media (prefers-color-scheme: dark) {
+      .dropdown-content {
+        background: #0f1220;
+        color: #f5f7ff;
+        border: 1px solid #1f2336;
+        box-shadow: 0 12px 30px rgba(0,0,0,.5);
+      }
+      .dropdown-content a { color: #f5f7ff; }
+      .dropdown-content a:hover { background: #171b2f; }
+    }
   </style>
 </head>
 <body>
@@ -36,12 +56,12 @@
         <div class="menu" role="menubar">
           <a role="menuitem" href="/">Accueil</a>
 
-   <div class="dropdown">
-            <a role="menuitem" href="#">Portfolio ▾</a>
-            <div class="dropdown-content">
-              <a href="/textes.html">Textes en vers</a>
-              <a href="/fiction.html">Fiction</a>
-              <a href="/articles.html">Articles</a>
+          <div class="dropdown">
+            <a role="menuitem" aria-haspopup="true" aria-expanded="false">Portfolio ▾</a>
+            <div class="dropdown-content" role="menu">
+              <a role="menuitem" href="/textes.html">Textes en vers</a>
+              <a role="menuitem" href="/fiction.html">Fiction</a>
+              <a role="menuitem" href="/articles.html">Articles</a>
             </div>
           </div>
 

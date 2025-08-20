@@ -32,6 +32,33 @@ title: Accueil — Plume de l’Ombre
   </div>
 </section>
 
+<section id="fiction" aria-labelledby="fic-title">
+  <h2 id="fic-title">Fiction</h2>
+  <div class="grid cols-3" role="list">
+  {% for item in collections.fiction | reverse %}
+    {% if loop.index0 < 6 %}
+      <article class="card" role="listitem">
+        <h3><a href="{{ item.url }}">{{ item.data.title }}</a></h3>
+        <p class="muted">
+          {% if item.data.tags %}{{ item.data.tags | join(", ") }}{% else %}Nouvelle{% endif %}
+        </p>
+        <p>
+          {% if item.data.excerpt %}
+            {{ item.data.excerpt | striptags | truncate(150, true, '…') }}
+          {% else %}
+            {{ item.templateContent | striptags | truncate(150, true, '…') }}
+          {% endif %}
+        </p>
+        <a class="btn ghost" href="{{ item.url }}" aria-label="Lire : {{ item.data.title }}">Lire</a>
+      </article>
+    {% endif %}
+  {% endfor %}
+  {% if (collections.fiction | length) == 0 %}
+    <p class="muted">Aucun texte de fiction pour le moment.</p>
+  {% endif %}
+  </div>
+</section>
+
 <section id="articles" aria-labelledby="art-title">
   <h2 id="art-title">Articles publiés en ligne</h2>
   <div class="grid cols-3" role="list">

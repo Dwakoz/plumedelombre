@@ -3,11 +3,8 @@ title: Les marronniers
 date: 2025-08-23T09:21:59.737Z
 ---
 L’envie d’écrire se manifeste
-
 Mais je suis en panne sèche d’inspi
-
 Je n’ai aucune idée de texte
-
 Les rimes ne viennent pas aujourd’hui
 
 Alors je cherche par la fenêtre

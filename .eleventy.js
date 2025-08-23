@@ -14,6 +14,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addCollection("fiction", (c) =>
     c.getFilteredByGlob("content/fiction/**/*.md").sort((a, b) => b.date - a.date)
   );
+   eleventyConfig.addCollection("oeuvres", (c) =>
+    c.getFilteredByGlob("content/oeuvres/**/*.md").sort((a, b) => b.date - a.date)
+  );
 
   return {
     dir: { input: ".", output: "_site", includes: "_includes", data: "_data" },

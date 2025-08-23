@@ -2,89 +2,91 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "static/uploads"
-public_folder: "/uploads"
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
 publish_mode: editorial_workflow
 locale: "fr"
 
+slug:
+  clean_accents: true
+  encoding: "unicode"
+  sanitize_replacement: "-"
+
 collections:
+  # ——— Textes
   - name: "textes"
-    label: "Textes en vers"
+    label: "Textes"
+    label_singular: "Texte"
     folder: "content/textes"
     create: true
     slug: "{{slug}}"
-    extension: "md"
-    format: "frontmatter"
+    sortable_fields: ["date", "title"]
+    view_filters:
+      - label: "Publié"
+        field: "draft"
+        pattern: false
     fields:
       - { label: "Titre", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime", required: false }
-      - label: "Texte"
-        name: "body"
-        widget: "markdown"
-        buttons:
-          - bold
-          - italic
-          - link
-          - heading-one
-          - heading-two
-          - heading-three
-          - quote
-          - code
-          - bulleted-list
-          - numbered-list
-        editor_components: []
-        sanitize_preview: false
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Éditeur / Plateforme", name: "publisher", widget: "string", required: false }
+      - { label: "URL publique", name: "url", widget: "string", required: false }
+      - { label: "Extrait (150 car. env.)", name: "excerpt", widget: "text", required: false }
+      - { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Contenu", name: "body", widget: "markdown" }
+      - { label: "Tags", name: "tags", widget: "list", default: ["textes"], required: false }
 
+  # ——— Fiction
   - name: "fiction"
     label: "Fiction"
+    label_singular: "Fiction"
     folder: "content/fiction"
     create: true
     slug: "{{slug}}"
-    extension: "md"
-    format: "frontmatter"
+    sortable_fields: ["date", "title"]
     fields:
       - { label: "Titre", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime", required: false }
-      - { label: "Résumé (optionnel)", name: "excerpt", widget: "text", required: false }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
-      - label: "Texte"
-        name: "body"
-        widget: "markdown"
-        buttons:
-          - bold
-          - italic
-          - link
-          - heading-one
-          - heading-two
-          - heading-three
-          - quote
-          - code
-          - bulleted-list
-          - numbered-list
-        editor_components: []
-        sanitize_preview: false
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Éditeur / Plateforme", name: "publisher", widget: "string", required: false }
+      - { label: "URL publique", name: "url", widget: "string", required: false }
+      - { label: "Extrait (150 car. env.)", name: "excerpt", widget: "text", required: false }
+      - { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Contenu", name: "body", widget: "markdown" }
+      - { label: "Tags", name: "tags", widget: "list", default: ["fiction"], required: false }
 
+  # ——— Articles
   - name: "articles"
     label: "Articles"
+    label_singular: "Article"
     folder: "content/articles"
     create: true
     slug: "{{slug}}"
-    extension: "md"
-    format: "frontmatter"
+    sortable_fields: ["date", "title"]
     fields:
       - { label: "Titre", name: "title", widget: "string" }
-      - { label: "URL de l’article", name: "url", widget: "string" }
-      - { label: "Publication (média)", name: "publisher", widget: "string", required: false }
-      - { label: "Date", name: "date", widget: "datetime", required: false }
-      - label: "Résumé court"
-        name: "excerpt"
-        widget: "markdown"
-        buttons:
-          - bold
-          - italic
-          - link
-          - quote
-          - bulleted-list
-          - numbered-list
-        editor_components: []
-        sanitize_preview: false
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Éditeur / Plateforme", name: "publisher", widget: "string", required: false }
+      - { label: "URL publique", name: "url", widget: "string", required: false }
+      - { label: "Extrait (150 car. env.)", name: "excerpt", widget: "text", required: false }
+      - { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Contenu", name: "body", widget: "markdown" }
+      - { label: "Tags", name: "tags", widget: "list", default: ["articles"], required: false }
+
+  # ——— Œuvres composites (NOUVEAU)
+  - name: "oeuvres"
+    label: "Œuvres composites"
+    label_singular: "Œuvre composite"
+    folder: "content/oeuvres"
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: ["date", "title"]
+    preview_path: "oeuvres/{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Éditeur / Plateforme", name: "publisher", widget: "string", required: false }
+      - { label: "URL publique", name: "url", widget: "string", required: false }
+      - { label: "Extrait (150 car. env.)", name: "excerpt", widget: "text", required: false, hint: "S’affiche tronqué à ~150 caractères sur la liste." }
+      - { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Contenu", name: "body", widget: "markdown" }
+      - { label: "Tags", name: "tags", widget: "list", default: ["oeuvres"], required: false }

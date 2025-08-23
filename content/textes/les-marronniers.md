@@ -1,6 +1,6 @@
 ---
 title: Les marronniers
-date: 2025-08-23T09:19:46.744Z
+date: 2025-08-23T09:21:59.737Z
 ---
 L’envie d’écrire se manifeste
 
@@ -10,8 +10,6 @@ Je n’ai aucune idée de texte
 
 Les rimes ne viennent pas aujourd’hui
 
-
-
 Alors je cherche par la fenêtre
 
 Des idées de sujets à traiter
@@ -20,8 +18,6 @@ La nature dévoile sa palette
 
 Devant mes yeux émerveillés
 
-
-
 Les couleurs d’une aube rosée
 
 Subliment les teintes de l’automne
@@ -29,8 +25,6 @@ Subliment les teintes de l’automne
 Les feuilles fanées des marronniers
 
 Volent, dansent, flamboient et tourbillonnent
-
-
 
 Le vent qui les fait frissonner
 
@@ -48,8 +42,6 @@ Dans la nature et sa passion
 
 Pour toutes les couleurs qu’elle déploie
 
-
-
 Les plus belles images sont souvent
 
 Dans la nature, pas dans les rimes
@@ -57,8 +49,6 @@ Dans la nature, pas dans les rimes
 Et elles s’imitent difficilement
 
 Surtout celles des marronniers dont la cime
-
-
 
 S’étire haut vers le ciel d’automne
 

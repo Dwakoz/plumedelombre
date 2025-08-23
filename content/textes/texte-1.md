@@ -2,8 +2,6 @@
 title: Dégénérés
 date: 2025-08-16T09:25:00.000Z
 ---
-**Dégénérés**
-
 Des générations de dégénérescence
 Une société paumée qui se vide de tout son sens
 Composée sans conteste de cons testés comme des cobayes

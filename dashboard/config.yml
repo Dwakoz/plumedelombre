@@ -65,7 +65,7 @@ collections:
         sanitize_preview: false
 
   - name: "articles"
-    label: "Articles (liens)"
+    label: "Articles"
     folder: "content/articles"
     create: true
     slug: "{{slug}}"

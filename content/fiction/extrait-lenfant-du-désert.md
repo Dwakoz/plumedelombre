@@ -1,9 +1,7 @@
 ---
-title: "[Extrait] L'Enfant du désert"
+title: "[Extrait] *L'Enfant du désert* **Chapitre \"La Mort\"**"
 date: 2025-08-23T09:34:28.237Z
 ---
-\[Extrait] **L'Enfant du désert - Chapitre "La Mort"**
-
 Un matin, très tôt, Ismaël fut réveillé par des cris de joie tout près de sa maison. Les yeux encore à demi-clos par le sommeil, il sortit, pieds nus, titubant légèrement. Ce qu’il vit lui donna l’impression d’être foudroyé sur place. Il courut vers le dattier, affolé. Le souffle coupé, il tenta d’hurler mais sa bouche n’émit aucun son. Le choc était bien trop grand pour le laisser s’exprimer. Il s’écarta de justesse au moment où la cime du palmier heurta le sol à ses pieds, soulevant un immense nuage de poussière qui le priva d’air pendant une bonne minute. Quatre jeunes, armés d’une hache achetée la veille au marché à l’occasion d’une sortie en ville, s’esclaffèrent en découvrant le visage décomposé et asphyxié par le sable d’Ibn Sheitan. Les larmes qui commençaient à rouler abondamment sur les joues du fils de Nayara-le-Fantôme eurent pour effet de redoubler leurs hurlements de joie. Ils regagnèrent le village en sautillant gaiement, convaincus d’avoir porté le coup de grâce à Ismaël. Ce dernier contempla avec désarroi le spectacle qui s’offrait à lui.
 
 Ce fut l’acte de trop. Cela ne pouvait plus durer. Ismaël, à présent seul, sans personne pour le protéger, sans grand-père et sans dattier, se résigna le matin-même à quitter le village. Il prépara quelques affaires afin de se rendre, à l’heure où les étoiles commencent à disparaître, dans la ville la plus proche. Mais… Et après ? Il ne savait que faire. Où irait-il ? De quoi vivrait-il ? Il décida de s’en remettre à Dieu ; il verrait bien à ce moment-là, inutile de s’inquiéter trop tôt. La première étape était d’atteindre la ville.

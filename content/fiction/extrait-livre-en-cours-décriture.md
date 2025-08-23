@@ -1,6 +1,6 @@
 ---
-title: "[Extrait] *Livre en cours d'écriture* - **Chapitre \"Le pêcheur et la
-  chauve-souris\"**"
+title: "[Extrait] (Livre en cours d'écriture) - Chapitre \"Le pêcheur et la
+  chauve-souris\""
 date: 2025-08-23T09:43:14.450Z
 ---
 Son fils commençait sérieusement à l’inquiéter. Quand il avait cinq ans, c’était encore acceptable. Beaucoup d’enfants ont des amis imaginaires à cet âge-là, ils s’inventent des histoires et confondent les rêves avec la réalité. Mais Jonas venait d’avoir dix ans et ça commençait à être inquiétant. Ça en devenait même effrayant de précision. C’était peut-être une espèce de traumatisme transgénérationnel ? Les Grands Cataclysmes avaient été si dévastateurs, les récits des survivants étaient empreints de tellement de terreur et de nostalgie, que même la nouvelle génération avait l’impression de les avoir vécus. Alexis dévisagea son garçon, un blondinet aux yeux marron. Pas vilain, mais pas particulièrement beau non plus. Cette fois, il blablatait au sujet d’un pêcheur qu’il aurait connu il y a très longtemps, dans un pays qui n’existait plus. De toute façon, plus grand-chose n’existait aujourd’hui.

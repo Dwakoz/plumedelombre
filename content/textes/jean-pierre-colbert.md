@@ -34,7 +34,7 @@ Et fait garder la tête haute
 
 Tous les passants m’observent en biais
 Comme les figures d’un Picasso
-Alors j’me sens affreusement laid
+Et je me sens affreusement laid
 Comme Gwynplaine ou Quasimodo
 
 Alors pour pas devenir cinglé

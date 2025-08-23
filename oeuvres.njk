@@ -1,0 +1,29 @@
+---
+layout: base.njk
+title: Œuvres composites — Plume de l’Ombre
+permalink: /oeuvres.html
+---
+
+<section id="oeuvres">
+  <h1>Œuvres composites</h1>
+  <p class="muted">Sélection d’œuvres composites publiées en ligne.</p>
+
+  <div class="grid cols-3" role="list">
+  {% for item in collections.oeuvres | reverse %}
+    <article class="card" role="listitem">
+      <h3>{{ item.data.title }}</h3>
+      {% if item.data.publisher %}<p class="muted">{{ item.data.publisher }}</p>{% endif %}
+      <p class="muted">
+        {% if item.data.excerpt %}
+          {{ item.data.excerpt | striptags | truncate(150, true, '…') }}
+        {% else %}
+          {{ '' | truncate(0) }}
+        {% endif %}
+      </p>
+      {% if item.data.url %}
+      <p><a class="btn" href="{{ item.data.url }}" target="_blank" rel="noopener noreferrer">Voir l’œuvre</a></p>
+      {% endif %}
+    </article>
+  {% endfor %}
+  </div>
+</section>

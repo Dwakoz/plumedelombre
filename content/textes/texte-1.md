@@ -1,5 +1,5 @@
 ---
-title: Dégénérés
+title: Dégénéré
 date: 2025-08-16T09:25:00.000Z
 ---
 Des générations de dégénérescence

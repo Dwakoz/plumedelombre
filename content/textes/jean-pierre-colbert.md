@@ -37,7 +37,7 @@ Comme les figures d’un Picasso
 Alors j’me sens affreusement laid
 Comme Gwynplaine ou Quasimodo
 
-Et puis pour pas devenir cinglé
+Alors pour pas devenir cinglé
 Souvent je chantonne du Mozart
 Ou j’m’imagine dans un Monet
 Au beau milieu des nénuphars

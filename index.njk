@@ -81,3 +81,33 @@ title: Accueil — Plume de l’Ombre
   {% endif %}
   </div>
 </section>
+
+<section id="oeuvres" aria-labelledby="oeuv-title">
+  <h2 id="oeuv-title">Œuvres composites</h2>
+  <div class="grid cols-3" role="list">
+  {% for oeuvre in collections.oeuvres | reverse %}
+    {% if loop.index0 < 6 %}
+      <article class="card" role="listitem">
+        <h3>{{ oeuvre.data.title }}</h3>
+        <p class="muted">{{ oeuvre.data.publisher or '' }}</p>
+        <p>
+          {% if oeuvre.data.excerpt %}
+            {{ oeuvre.data.excerpt | striptags | truncate(150, true, '…') }}
+          {% else %}
+            {{ oeuvre.templateContent | striptags | truncate(150, true, '…') }}
+          {% endif %}
+        </p>
+        {% if oeuvre.data.url %}
+          <p><a class="btn ghost" href="{{ oeuvre.data.url }}" target="_blank" rel="noopener"
+                aria-label="Voir l’œuvre externe : {{ oeuvre.data.title }}">Voir</a></p>
+        {% else %}
+          <p><a class="btn ghost" href="{{ oeuvre.url }}" aria-label="Lire : {{ oeuvre.data.title }}">Lire</a></p>
+        {% endif %}
+      </article>
+    {% endif %}
+  {% endfor %}
+  {% if (collections.oeuvres | length) == 0 %}
+    <p class="muted">Aucune œuvre composite pour le moment.</p>
+  {% endif %}
+  </div>
+</section>

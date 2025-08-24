@@ -34,8 +34,8 @@ collections:
       - { label: "Contenu", name: "body", widget: "markdown" }
       - { label: "Tags", name: "tags", widget: "list", default: ["texte"], required: false }
 
-  - name: "fiction"
-    label: "Fiction"
+  - name: "fictions"
+    label: "Fictions"
     label_singular: "Fiction"
     folder: "content/fiction"
     create: true

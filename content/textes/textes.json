@@ -1,4 +1,8 @@
 {
-  "layout": "textes.njk",
-  "permalink": "/textes/{{ page.fileSlug }}/index.html"
+  "layout": "base.njk",
+  "tags": "texte",
+  "eleventyComputed": {
+    "permalink": "/textes/{{ page.fileSlug }}/",
+    "title": "{{ title }}"
+  }
 }

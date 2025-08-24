@@ -1,4 +1,4 @@
-// .eleventy.js — perf + garde-fous, SANS override des noms réservés
+// .eleventy.js — perfs + collections explicites + auto‑tags par dossier
 const path = require("path");
 const fs = require("fs");
 
@@ -73,7 +73,7 @@ async function rewriteImages(html) {
     const altMatch = attrs.match(/alt=["']([^"']*)["']/i);
     const alt = altMatch ? altMatch[1] : "";
     const classMatch = attrs.match(/\bclass=["']([^"']*)["']/i);
-    const cls = classMatch ? cls = classMatch[1] : "";
+    const cls = classMatch ? classMatch[1] : "";
 
     tasks.push(
       pictureHTML(src, alt, cls).then(pic => {
@@ -100,8 +100,26 @@ async function rewriteImages(html) {
 }
 
 module.exports = function (eleventyConfig) {
-  // IMPORTANT: on garde la protection par défaut.
-  // NE PAS appeler setFreezeReservedData(false)
+  // Protection Eleventy par défaut conservée. Ne pas toucher aux noms réservés.
+
+  // Auto‑tags selon le chemin pour fiabiliser les collections même si front‑matter absent.
+  eleventyConfig.addGlobalData("eleventyComputed", {
+    tags: (data) => {
+      const base = new Set([].concat(data.tags || []));
+      const p = (data.page && data.page.inputPath) || "";
+      if (/\/textes?\//i.test(p)) base.add("texte");
+      if (/\/articles?\//i.test(p)) base.add("article");
+      if (/\/fiction(s)?\//i.test(p)) base.add("fiction");
+      if (/\/oeuvres?/i.test(p)) base.add("oeuvre");
+      return Array.from(base);
+    }
+  });
+
+  // Collections explicites utilisées par les pages
+  eleventyConfig.addCollection("textes", (api) => api.getFilteredByTag("texte"));
+  eleventyConfig.addCollection("articles", (api) => api.getFilteredByTag("article"));
+  eleventyConfig.addCollection("fictions", (api) => api.getFilteredByTag("fiction"));
+  eleventyConfig.addCollection("oeuvres", (api) => api.getFilteredByTag("oeuvre"));
 
   eleventyConfig.addPassthroughCopy({ "static": "static" });
   eleventyConfig.addPassthroughCopy({ "styles.css": "styles.css" });

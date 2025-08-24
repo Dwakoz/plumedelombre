@@ -1,0 +1,68 @@
+---
+layout: base.njk
+title: Dashboard — Plume de l’Ombre
+permalink: /dashboard/
+eleventyExcludeFromCollections: true
+---
+
+<meta name="robots" content="noindex, nofollow">
+
+<section id="dashboard">
+  <h1>Dashboard</h1>
+
+  <div class="grid cols-4">
+    <div class="card"><h3>Textes</h3><p id="count-textes">0</p></div>
+    <div class="card"><h3>Articles</h3><p id="count-articles">0</p></div>
+    <div class="card"><h3>Fictions</h3><p id="count-fictions">0</p></div>
+    <div class="card"><h3>Œuvres</h3><p id="count-oeuvres">0</p></div>
+  </div>
+
+  <h2>Contenus récents</h2>
+  <div class="grid cols-2">
+    <div>
+      <h3>Textes</h3>
+      <ul id="list-textes" class="list"></ul>
+    </div>
+    <div>
+      <h3>Articles</h3>
+      <ul id="list-articles" class="list"></ul>
+    </div>
+    <div>
+      <h3>Fictions</h3>
+      <ul id="list-fictions" class="list"></ul>
+    </div>
+    <div>
+      <h3>Œuvres</h3>
+      <ul id="list-oeuvres" class="list"></ul>
+    </div>
+  </div>
+</section>
+
+<script>
+async function loadFeed(url){ try{ const r=await fetch(url,{cache:"no-store"}); return r.ok? await r.json():[] }catch{ return [] } }
+function fill(countId,listId,items){
+  document.getElementById(countId).textContent = items.length;
+  const ul = document.getElementById(listId);
+  ul.innerHTML = items.slice(0,10).map(i => `<li><a href="${i.url}">${i.title||"(sans titre)"}</a>${i.summary?` — ${i.summary}`:""}</li>`).join("") || "<li>Aucun élément.</li>";
+}
+(async ()=>{
+  const [t,a,f,o] = await Promise.all([
+    loadFeed("/feeds/textes.json"),
+    loadFeed("/feeds/articles.json"),
+    loadFeed("/feeds/fictions.json"),
+    loadFeed("/feeds/oeuvres.json")
+  ]);
+  fill("count-textes","list-textes",t);
+  fill("count-articles","list-articles",a);
+  fill("count-fictions","list-fictions",f);
+  fill("count-oeuvres","list-oeuvres",o);
+})();
+</script>
+
+<style>
+#dashboard .card { padding:1rem; border:1px solid var(--border,#ddd); border-radius:12px; }
+#dashboard .card h3 { margin:0 0 .5rem 0; }
+#dashboard .card p { font-size:2rem; margin:0; }
+#dashboard .list { padding-left:1rem; }
+#dashboard .list li { margin:.25rem 0; }
+</style>

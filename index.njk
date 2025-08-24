@@ -4,11 +4,13 @@ title: Accueil — Plume de l’Ombre
 ---
 
 <section class="hero" aria-labelledby="hero-title">
-  <h1 id="hero-title">Mes mots donnent vie à vos idées. </h1>
-  <p>Ghostwriter polyvalente, je rédige pour vous tout type de textes, de la fiction aux chansons, en passant par les scripts vidéo et les articles scientifiques. Je peux également traduire des textes de l'anglais vers le français.
+  <p class="badge">FR / EN</p>
+  <h1 id="hero-title">Vos idées, mes mots.</h1>
+  <p>Mes mots donnent vie à vos idées. // Ghostwriter polyvalente, je rédige pour vous tout type de textes, de la fiction aux chansons, en passant par les scripts vidéo et les articles scientifiques. Je peux également traduire des textes de l'anglais vers le français.
 </p>
   <div style="display:flex;gap:12px;margin-top:10px">
     <a class="btn" href="/contact.html" aria-label="Contacter Plume de l’Ombre pour discuter d’un projet">Contactez-moi</a>
+    <a class="btn ghost" href="/textes.html" aria-label="Voir des textes en vers">Voir des textes</a>
   </div>
 </section>
 
@@ -18,7 +20,7 @@ title: Accueil — Plume de l’Ombre
   {% for item in collections.textes | reverse %}
     {% if loop.index0 < 6 %}
       <article class="card" role="listitem">
-        <h3><a href="{{ item.url }}">{{ item.data.title }}</a></h3>
+        <h3 class="title-blue">{{ item.data.title }}</h3>
         <p class="muted">Texte</p>
         <p>{{ item.templateContent | striptags | truncate(150, true, '…') }}</p>
         <a class="btn ghost" href="{{ item.url }}" aria-label="Lire : {{ item.data.title }}">Lire</a>
@@ -37,7 +39,7 @@ title: Accueil — Plume de l’Ombre
   {% for item in collections.fiction | reverse %}
     {% if loop.index0 < 6 %}
       <article class="card" role="listitem">
-        <h3><a href="{{ item.url }}">{{ item.data.title }}</a></h3>
+        <h3 class="title-blue">{{ item.data.title }}</h3>
         <p class="muted">
           {% if item.data.tags %}{{ item.data.tags | join(", ") }}{% else %}Nouvelle{% endif %}
         </p>
@@ -64,7 +66,7 @@ title: Accueil — Plume de l’Ombre
   {% for article in collections.articles | reverse %}
     {% if loop.index0 < 6 %}
       <article class="card" role="listitem">
-        <h3>{{ article.data.title }}</h3>
+        <h3 class="title-blue">{{ article.data.title }}</h3>
         <p class="muted">{{ article.data.publisher or '' }}</p>
         <p>{{ (article.data.excerpt or '') | striptags | truncate(150, true, '…') }}</p>
         <p>
@@ -86,7 +88,7 @@ title: Accueil — Plume de l’Ombre
   {% for oeuvre in collections.oeuvres | reverse %}
     {% if loop.index0 < 6 %}
       <article class="card" role="listitem">
-        <h3>{{ oeuvre.data.title }}</h3>
+        <h3 class="title-blue">{{ oeuvre.data.title }}</h3>
         <p class="muted">{{ oeuvre.data.publisher or '' }}</p>
         <p>
           {% if oeuvre.data.excerpt %}
@@ -109,3 +111,8 @@ title: Accueil — Plume de l’Ombre
   {% endif %}
   </div>
 </section>
+
+<style>
+  /* Forcer les titres des cartes en bleu, sans lien */
+  .card h3.title-blue { color: var(--link, var(--accent, #3ea8ff)); }
+</style>

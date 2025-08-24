@@ -32,3 +32,11 @@
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Protection /dashboard
+[[headers]]
+  for = "/dashboard/*"
+  [headers.values]
+    Basic-Auth = "admin:CHANGE_ME"
+    Cache-Control = "no-store"
+    X-Robots-Tag = "noindex, nofollow"

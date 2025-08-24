@@ -1,8 +1,7 @@
 ---
 title: Jean-Pierre Colbert
 date: 2025-08-16T20:39:00.000Z
-tags:
-  - Txte
+tags: []
 ---
 « Bonjour Monsieur, comment ça va ? »
 Monsieur… ?

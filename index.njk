@@ -19,10 +19,10 @@ title: Accueil — Plume de l’Ombre
   {% for item in collections.textes | reverse %}
     {% if loop.index0 < 6 %}
       <article class="card" role="listitem">
-        <h3 class="title-blue">{{ item.data.title }}</h3>
+        <h3 class="title-blue">{{ item.data.title | safe }}</h3>
         <p class="muted">Texte</p>
         <p>{{ item.templateContent | striptags | truncate(150, true, '…') }}</p>
-        <a class="btn ghost" href="{{ item.url }}" aria-label="Lire : {{ item.data.title }}">Lire</a>
+        <a class="btn ghost" href="{{ item.url }}" aria-label="Lire : {{ item.data.title | striptags }}">Lire</a>
       </article>
     {% endif %}
   {% endfor %}
@@ -38,7 +38,7 @@ title: Accueil — Plume de l’Ombre
   {% for item in collections.fiction | reverse %}
     {% if loop.index0 < 6 %}
       <article class="card" role="listitem">
-        <h3 class="title-blue">{{ item.data.title }}</h3>
+        <h3 class="title-blue">{{ item.data.title | safe }}</h3>
         <p class="muted">
           {% if item.data.tags %}{{ item.data.tags | join(", ") }}{% else %}Nouvelle{% endif %}
         </p>
@@ -49,7 +49,7 @@ title: Accueil — Plume de l’Ombre
             {{ item.templateContent | striptags | truncate(150, true, '…') }}
           {% endif %}
         </p>
-        <a class="btn ghost" href="{{ item.url }}" aria-label="Lire : {{ item.data.title }}">Lire</a>
+        <a class="btn ghost" href="{{ item.url }}" aria-label="Lire : {{ item.data.title | striptags }}">Lire</a>
       </article>
     {% endif %}
   {% endfor %}
@@ -65,12 +65,12 @@ title: Accueil — Plume de l’Ombre
   {% for article in collections.articles | reverse %}
     {% if loop.index0 < 6 %}
       <article class="card" role="listitem">
-        <h3 class="title-blue">{{ article.data.title }}</h3>
+        <h3 class="title-blue">{{ article.data.title | safe }}</h3>
         <p class="muted">{{ article.data.publisher or '' }}</p>
         <p>{{ (article.data.excerpt or '') | striptags | truncate(150, true, '…') }}</p>
         <p>
           <a class="btn ghost" href="{{ article.data.url }}" target="_blank" rel="noopener"
-             aria-label="Lire l’article externe : {{ article.data.title }}">Lire</a>
+             aria-label="Lire l’article externe : {{ article.data.title | striptags }}">Lire</a>
         </p>
       </article>
     {% endif %}
@@ -87,7 +87,7 @@ title: Accueil — Plume de l’Ombre
   {% for oeuvre in collections.oeuvres | reverse %}
     {% if loop.index0 < 6 %}
       <article class="card" role="listitem">
-        <h3 class="title-blue">{{ oeuvre.data.title }}</h3>
+        <h3 class="title-blue">{{ oeuvre.data.title | safe }}</h3>
         <p class="muted">{{ oeuvre.data.publisher or '' }}</p>
         <p>
           {% if oeuvre.data.excerpt %}
@@ -98,9 +98,9 @@ title: Accueil — Plume de l’Ombre
         </p>
         {% if oeuvre.data.url %}
           <p><a class="btn ghost" href="{{ oeuvre.data.url }}" target="_blank" rel="noopener"
-                aria-label="Voir l’œuvre externe : {{ oeuvre.data.title }}">Voir</a></p>
+                aria-label="Voir l’œuvre externe : {{ oeuvre.data.title | striptags }}">Voir</a></p>
         {% else %}
-          <p><a class="btn ghost" href="{{ oeuvre.url }}" aria-label="Lire : {{ oeuvre.data.title }}">Lire</a></p>
+          <p><a class="btn ghost" href="{{ oeuvre.url }}" aria-label="Lire : {{ oeuvre.data.title | striptags }}">Lire</a></p>
         {% endif %}
       </article>
     {% endif %}
@@ -112,6 +112,5 @@ title: Accueil — Plume de l’Ombre
 </section>
 
 <style>
-  /* Forcer les titres des cartes en bleu, sans lien */
   .card h3.title-blue { color: var(--link, var(--accent, #3ea8ff)); }
 </style>

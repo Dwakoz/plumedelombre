@@ -1,13 +1,21 @@
 {
   "name": "plumedelombre",
-  "version": "1.0.0",
-  "description": "Portfolio Ghostwriter bilingue FR/EN",
-  "main": "index.js",
-  "scripts": { "build": "eleventy", "start": "eleventy --serve" },
-  "author": "Plume de l’Ombre",
-  "license": "MIT",
-  "devDependencies": {
-    "@11ty/eleventy": "^2.0.1",
-    "decap-cms": "^3.1.9"
+  "private": true,
+  "version": "1.0.1",
+  "description": "Site plumedelombre - Eleventy avec optimisation images + minification",
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "clean": "rimraf _site .cache",
+    "build": "ELEVENTY_ENV=production eleventy",
+    "serve": "eleventy --serve",
+    "start": "npm run serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-img": "^5.0.0",
+    "html-minifier-terser": "^7.2.0",
+    "rimraf": "^6.0.1"
   }
 }

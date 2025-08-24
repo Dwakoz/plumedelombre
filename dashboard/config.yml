@@ -2,8 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "static/uploads"
-public_folder: "/static/uploads"
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
 
 publish_mode: editorial_workflow
 locale: "fr"
@@ -35,7 +35,7 @@ collections:
       - { label: "Extrait (150 car. env.)", name: "excerpt", widget: "text", required: false }
       - { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false }
       - { label: "Contenu", name: "body", widget: "markdown" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["texte"], required: false }
+      - { label: "Tags", name: "tags", widget: "list", default: ["textes"], required: false }
 
   # ——— Fiction
   - name: "fiction"
@@ -73,7 +73,7 @@ collections:
       - { label: "Extrait (150 car. env.)", name: "excerpt", widget: "text", required: false }
       - { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false }
       - { label: "Contenu", name: "body", widget: "markdown" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["article"], required: false }
+      - { label: "Tags", name: "tags", widget: "list", default: ["articles"], required: false }
 
   # ——— Œuvres composites
   - name: "oeuvres"
@@ -89,7 +89,7 @@ collections:
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
       - { label: "Éditeur / Plateforme", name: "publisher", widget: "string", required: false }
       - { label: "URL publique", name: "url", widget: "string", required: false }
-      - { label: "Extrait (150 car. env.)", name: "excerpt", widget: "text", required: false, hint: "S’affiche tronqué à ~150 caractères sur la liste." }
+      - { label: "Extrait (150 car. env.)", name: "excerpt", widget: "text", required: false }
       - { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false }
       - { label: "Contenu", name: "body", widget: "markdown" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["oeuvre"], required: false }
+      - { label: "Tags", name: "tags", widget: "list", default: ["oeuvres"], required: false }

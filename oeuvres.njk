@@ -6,11 +6,12 @@ permalink: /oeuvres.html
 
 <section id="oeuvres">
   <h1>Œuvres composites</h1>
+  <p class="muted">Sélection d’œuvres composites publiées en ligne.</p>
 
   <div class="grid cols-3" role="list">
   {% for item in collections.oeuvres | reverse %}
     <article class="card" role="listitem">
-      <h3>{{ item.data.title }}</h3>
+      <h3 class="title-blue">{{ item.data.title | safe }}</h3>
       {% if item.data.publisher %}<p class="muted">{{ item.data.publisher }}</p>{% endif %}
       <p class="muted">
         {% if item.data.excerpt %}
@@ -26,3 +27,7 @@ permalink: /oeuvres.html
   {% endfor %}
   </div>
 </section>
+
+<style>
+  .card h3.title-blue { color: var(--link, var(--accent, #3ea8ff)); }
+</style>

@@ -5,12 +5,13 @@
   <title>Dashboard — Plume de l’Ombre</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <link href="https://unpkg.com/netlify-cms@^2/dist/cms.css" rel="stylesheet">
+  <link href="https://unpkg.com/netlify-cms@2.10.192/dist/cms.css" rel="stylesheet">
 </head>
 <body>
   <script>window.CMS_MANUAL_INIT = true;</script>
 
   <script>
+    // Config minimale, sans sortable_fields, sans view_filters.
     window.CMS_CONFIG = {
       backend: { name: "git-gateway", branch: "main" },
       media_folder: "static/uploads",
@@ -25,8 +26,6 @@
           folder: "content/textes",
           create: true,
           slug: "{{slug}}",
-          preview_path: "textes/{{slug}}/",
-          sortable_fields: ["title","date","commit_date"],
           fields: [
             { label: "Titre", name: "title", widget: "string" },
             { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
@@ -35,72 +34,4 @@
             { label: "Extrait", name: "excerpt", widget: "text", required: false },
             { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false },
             { label: "Contenu", name: "body", widget: "markdown" },
-            { label: "Tags", name: "tags", widget: "list", default: ["texte"], required: false }
-          ]
-        },
-        {
-          name: "fictions",
-          label: "Fictions",
-          folder: "content/fiction",
-          create: true,
-          slug: "{{slug}}",
-          preview_path: "fiction/{{slug}}/",
-          sortable_fields: ["title","date","commit_date"],
-          fields: [
-            { label: "Titre", name: "title", widget: "string" },
-            { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
-            { label: "Éditeur / Plateforme", name: "publisher", widget: "string", required: false },
-            { label: "URL publique", name: "url", widget: "string", required: false },
-            { label: "Extrait", name: "excerpt", widget: "text", required: false },
-            { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false },
-            { label: "Contenu", name: "body", widget: "markdown" },
-            { label: "Tags", name: "tags", widget: "list", default: ["fiction"], required: false }
-          ]
-        },
-        {
-          name: "articles",
-          label: "Articles",
-          folder: "content/articles",
-          create: true,
-          slug: "{{slug}}",
-          preview_path: "articles/{{slug}}/",
-          sortable_fields: ["title","date","commit_date"],
-          fields: [
-            { label: "Titre", name: "title", widget: "string" },
-            { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
-            { label: "Éditeur / Plateforme", name: "publisher", widget: "string", required: false },
-            { label: "URL publique", name: "url", widget: "string", required: false },
-            { label: "Extrait", name: "excerpt", widget: "text", required: false },
-            { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false },
-            { label: "Contenu", name: "body", widget: "markdown" },
-            { label: "Tags", name: "tags", widget: "list", default: ["article"], required: false }
-          ]
-        },
-        {
-          name: "oeuvres",
-          label: "Œuvres composites",
-          folder: "content/oeuvres",
-          create: true,
-          slug: "{{slug}}",
-          preview_path: "oeuvres/{{slug}}/",
-          sortable_fields: ["title","date","commit_date"],
-          fields: [
-            { label: "Titre", name: "title", widget: "string" },
-            { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
-            { label: "Éditeur / Plateforme", name: "publisher", widget: "string", required: false },
-            { label: "URL publique", name: "url", widget: "string", required: false },
-            { label: "Extrait", name: "excerpt", widget: "text", required: false },
-            { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false },
-            { label: "Contenu", name: "body", widget: "markdown" },
-            { label: "Tags", name: "tags", widget: "list", default: ["oeuvre"], required: false }
-          ]
-        }
-      ]
-    };
-  </script>
-
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script src="https://unpkg.com/netlify-cms@^2/dist/netlify-cms.js"></script>
-  <script>window.CMS.init({ config: window.CMS_CONFIG });</script>
-</body>
-</html>
+            { label: "Tags", name: "tags", widget: "list", default

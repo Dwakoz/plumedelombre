@@ -9,8 +9,9 @@
 </head>
 <body>
   <script>window.CMS_MANUAL_INIT = true;</script>
+
+  <!-- Config CMS embarquée, volontairement simplifiée -->
   <script>
-    // Config CMS embarquée pour éviter tout doublon
     window.CMS_CONFIG = {
       backend: { name: "git-gateway", branch: "main" },
       media_folder: "static/uploads",
@@ -22,13 +23,10 @@
         {
           name: "textes",
           label: "Textes",
-          label_singular: "Texte",
           folder: "content/textes",
           create: true,
           slug: "{{slug}}",
-          sortable_fields: ["date", "title"],
           preview_path: "textes/{{slug}}/",
-          view_filters: [{ label: "Publié", field: "draft", pattern: false }],
           fields: [
             { label: "Titre", name: "title", widget: "string" },
             { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
@@ -43,11 +41,9 @@
         {
           name: "fictions",
           label: "Fictions",
-          label_singular: "Fiction",
           folder: "content/fiction",
           create: true,
           slug: "{{slug}}",
-          sortable_fields: ["date", "title"],
           preview_path: "fiction/{{slug}}/",
           fields: [
             { label: "Titre", name: "title", widget: "string" },
@@ -63,11 +59,9 @@
         {
           name: "articles",
           label: "Articles",
-          label_singular: "Article",
           folder: "content/articles",
           create: true,
           slug: "{{slug}}",
-          sortable_fields: ["date", "title"],
           preview_path: "articles/{{slug}}/",
           fields: [
             { label: "Titre", name: "title", widget: "string" },
@@ -83,11 +77,9 @@
         {
           name: "oeuvres",
           label: "Œuvres composites",
-          label_singular: "Œuvre composite",
           folder: "content/oeuvres",
           create: true,
           slug: "{{slug}}",
-          sortable_fields: ["date", "title"],
           preview_path: "oeuvres/{{slug}}/",
           fields: [
             { label: "Titre", name: "title", widget: "string" },

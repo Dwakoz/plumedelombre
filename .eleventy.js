@@ -1,4 +1,4 @@
-// .eleventy.js — perfs + collections explicites + auto‑tags par dossier
+// .eleventy.js — perfs + collections explicites + auto‑tags robustes
 const path = require("path");
 const fs = require("fs");
 
@@ -100,22 +100,30 @@ async function rewriteImages(html) {
 }
 
 module.exports = function (eleventyConfig) {
-  // Protection Eleventy par défaut conservée. Ne pas toucher aux noms réservés.
+  // Protection Eleventy par défaut conservée.
 
-  // Auto‑tags selon le chemin pour fiabiliser les collections même si front‑matter absent.
+  // Auto‑tags robustes: ignore tout sauf strings/arrays. N'écrase rien si vide.
   eleventyConfig.addGlobalData("eleventyComputed", {
     tags: (data) => {
-      const base = new Set([].concat(data.tags || []));
-      const p = (data.page && data.page.inputPath) || "";
-      if (/\/textes?\//i.test(p)) base.add("texte");
-      if (/\/articles?\//i.test(p)) base.add("article");
-      if (/\/fiction(s)?\//i.test(p)) base.add("fiction");
-      if (/\/oeuvres?/i.test(p)) base.add("oeuvre");
-      return Array.from(base);
+      const existing = data && data.tags;
+      const normExisting = Array.isArray(existing)
+        ? existing.filter(v => typeof v === "string")
+        : (typeof existing === "string" ? [existing] : []);
+
+      const p = (data.page && data.page.inputPath) ? String(data.page.inputPath).toLowerCase() : "";
+      const base = new Set(normExisting);
+      if (/\/(content\/)?textes?\//.test(p)) base.add("texte");
+      if (/\/(content\/)?articles?\//.test(p)) base.add("article");
+      if (/\/(content\/)?fiction(s)?\//.test(p)) base.add("fiction");
+      if (/\/(content\/)?oeuvres?\//.test(p)) base.add("oeuvre");
+
+      const out = Array.from(base);
+      if (out.length === 0) return undefined; // ne pas surcharger si rien à ajouter
+      return out;
     }
   });
 
-  // Collections explicites utilisées par les pages
+  // Collections explicites
   eleventyConfig.addCollection("textes", (api) => api.getFilteredByTag("texte"));
   eleventyConfig.addCollection("articles", (api) => api.getFilteredByTag("article"));
   eleventyConfig.addCollection("fictions", (api) => api.getFilteredByTag("fiction"));

@@ -1,8 +1,8 @@
-// .eleventy.js — perf + garde-fous build Netlify
+// .eleventy.js — perf + garde-fous + fix "collections" réservé
 const path = require("path");
 const fs = require("fs");
 
-// Garde-fou: minifier optionnelle
+// Minifier optionnelle
 let htmlMinify = async (c) => c;
 try {
   ({ minify: htmlMinify } = require("html-minifier-terser"));
@@ -10,7 +10,7 @@ try {
   console.warn("[warn] html-minifier-terser absent. Minification désactivée.");
 }
 
-// Garde-fou: eleventy-img optionnelle
+// eleventy-img optionnelle
 let Image = null;
 try {
   Image = require("@11ty/eleventy-img");
@@ -27,8 +27,7 @@ async function pictureHTML(src, alt = "", cls = "", sizes = "(max-width: 800px) 
   const srcPath = src.startsWith("/") ? src : `/${src}`;
   const inputFile = path.join(process.cwd(), srcPath.replace(/^\//, ""));
   if (!fs.existsSync(inputFile)) return null;
-
-  if (!Image) return null; // pas de génération si module manquant
+  if (!Image) return null;
 
   const metadata = await Image(inputFile, {
     widths: IMG_WIDTHS,
@@ -101,6 +100,9 @@ async function rewriteImages(html) {
 }
 
 module.exports = function (eleventyConfig) {
+  // Autoriser les noms réservés dans la cascade (corrige l’erreur "collections")
+  eleventyConfig.setFreezeReservedData(false);
+
   eleventyConfig.addPassthroughCopy({ "static": "static" });
   eleventyConfig.addPassthroughCopy({ "styles.css": "styles.css" });
   eleventyConfig.addWatchTarget("styles.css");

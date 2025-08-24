@@ -2,8 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "assets/uploads"
-public_folder: "/assets/uploads"
+media_folder: "static/uploads"
+public_folder: "/static/uploads"
 
 publish_mode: editorial_workflow
 locale: "fr"
@@ -26,6 +26,7 @@ collections:
       - label: "Publié"
         field: "draft"
         pattern: false
+    preview_path: "textes/{{slug}}/"
     fields:
       - { label: "Titre", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
@@ -34,7 +35,7 @@ collections:
       - { label: "Extrait (150 car. env.)", name: "excerpt", widget: "text", required: false }
       - { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false }
       - { label: "Contenu", name: "body", widget: "markdown" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["textes"], required: false }
+      - { label: "Tags", name: "tags", widget: "list", default: ["texte"], required: false }
 
   # ——— Fiction
   - name: "fiction"
@@ -44,6 +45,7 @@ collections:
     create: true
     slug: "{{slug}}"
     sortable_fields: ["date", "title"]
+    preview_path: "fiction/{{slug}}/"
     fields:
       - { label: "Titre", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
@@ -62,6 +64,7 @@ collections:
     create: true
     slug: "{{slug}}"
     sortable_fields: ["date", "title"]
+    preview_path: "articles/{{slug}}/"
     fields:
       - { label: "Titre", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
@@ -70,9 +73,9 @@ collections:
       - { label: "Extrait (150 car. env.)", name: "excerpt", widget: "text", required: false }
       - { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false }
       - { label: "Contenu", name: "body", widget: "markdown" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["articles"], required: false }
+      - { label: "Tags", name: "tags", widget: "list", default: ["article"], required: false }
 
-  # ——— Œuvres composites (NOUVEAU)
+  # ——— Œuvres composites
   - name: "oeuvres"
     label: "Œuvres composites"
     label_singular: "Œuvre composite"
@@ -80,7 +83,7 @@ collections:
     create: true
     slug: "{{slug}}"
     sortable_fields: ["date", "title"]
-    preview_path: "oeuvres/{{slug}}"
+    preview_path: "oeuvres/{{slug}}/"
     fields:
       - { label: "Titre", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
@@ -89,4 +92,4 @@ collections:
       - { label: "Extrait (150 car. env.)", name: "excerpt", widget: "text", required: false, hint: "S’affiche tronqué à ~150 caractères sur la liste." }
       - { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false }
       - { label: "Contenu", name: "body", widget: "markdown" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["oeuvres"], required: false }
+      - { label: "Tags", name: "tags", widget: "list", default: ["oeuvre"], required: false }

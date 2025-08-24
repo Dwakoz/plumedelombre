@@ -5,7 +5,7 @@ title: Accueil — Plume de l’Ombre
 
 <section class="hero" aria-labelledby="hero-title">
   <h1 id="hero-title">Vos idées, mes mots.</h1>
-  <p>Mes mots donnent vie à vos idées. // Ghostwriter polyvalente, je rédige pour vous tout type de textes, de la fiction aux chansons, en passant par les scripts vidéo et les articles scientifiques. Je peux également traduire des textes de l'anglais vers le français.
+  <p>Mes mots donnent vie à vos idées. // Ghostwriter polyvalent...eux également traduire des textes de l'anglais vers le français.
 </p>
   <div style="display:flex;gap:12px;margin-top:10px">
     <a class="btn" href="/contact.html" aria-label="Contacter Plume de l’Ombre pour discuter d’un projet">Contactez-moi</a>
@@ -19,7 +19,6 @@ title: Accueil — Plume de l’Ombre
     {% if loop.index0 < 6 %}
       <article class="card" role="listitem">
         <h3 class="title-blue">{{ item.data.title | safe }}</h3>
-        <p class="muted">Texte</p>
         <p>{{ item.templateContent | striptags | truncate(150, true, '…') }}</p>
         <a class="btn ghost" href="{{ item.url }}" aria-label="Lire : {{ item.data.title | striptags }}">Lire</a>
       </article>
@@ -38,9 +37,6 @@ title: Accueil — Plume de l’Ombre
     {% if loop.index0 < 6 %}
       <article class="card" role="listitem">
         <h3 class="title-blue">{{ item.data.title | safe }}</h3>
-        <p class="muted">
-          {% if item.data.tags %}{{ item.data.tags | join(", ") }}{% else %}Nouvelle{% endif %}
-        </p>
         <p>
           {% if item.data.excerpt %}
             {{ item.data.excerpt | striptags | truncate(150, true, '…') }}

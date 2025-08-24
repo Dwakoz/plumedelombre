@@ -1,20 +1,16 @@
 ---
 layout: base.njk
 title: Fiction — Plume de l’Ombre
+permalink: /fiction.html
 ---
 
-<section class="page-head">
+<section id="fiction">
   <h1>Fiction</h1>
-</section>
-
-<section class="listing" role="list">
-  <div class="grid cols-3">
+  <div class="grid cols-3" role="list">
   {% for item in collections.fiction | reverse %}
     <article class="card" role="listitem">
-      <h2><a href="{{ item.url }}">{{ item.data.title }}</a></h2>
-      <p class="muted">
-        {% if item.data.tags %}{{ item.data.tags | join(", ") }}{% endif %}
-      </p>
+      <h3 class="title-blue">{{ item.data.title | safe }}</h3>
+      <p class="muted">{% if item.data.tags %}{{ item.data.tags | join(", ") }}{% else %}fiction{% endif %}</p>
       <p>
         {% if item.data.excerpt %}
           {{ item.data.excerpt | striptags | truncate(150, true, '…') }}
@@ -22,11 +18,12 @@ title: Fiction — Plume de l’Ombre
           {{ item.templateContent | striptags | truncate(150, true, '…') }}
         {% endif %}
       </p>
-      <a class="btn ghost" href="{{ item.url }}" aria-label="Lire : {{ item.data.title }}">Lire</a>
+      <p><a class="btn" href="{{ item.url }}" aria-label="Lire : {{ item.data.title | striptags }}">Lire</a></p>
     </article>
   {% endfor %}
-  {% if (collections.fiction | length) == 0 %}
-    <p class="muted">Aucun texte de fiction pour le moment.</p>
-  {% endif %}
   </div>
 </section>
+
+<style>
+  .card h3.title-blue { color: var(--link, var(--accent, #3ea8ff)); }
+</style>

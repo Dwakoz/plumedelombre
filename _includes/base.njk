@@ -1,89 +1,65 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ title }}</title>
-  <link rel="stylesheet" href="/styles.css" />
-  <style>
-    /* Dropdown lisible (clair + sombre) */
-    .dropdown { position: relative; display: inline-block; }
-    .dropdown > a { cursor: pointer; }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 220px;
-      padding: 6px 0;
-      background: #ffffff;
-      color: #111;
-      border: 1px solid rgba(0,0,0,.08);
-      box-shadow: 0 12px 30px rgba(0,0,0,.15);
-      border-radius: 8px;
-      z-index: 1000;
-    }
-    .dropdown:hover .dropdown-content { display: block; }
-    .dropdown-content a {
-      display: block;
-      padding: 10px 14px;
-      text-decoration: none;
-      color: #111;         /* force couleur lisible */
-      opacity: 1;          /* annule styles globaux éventuels */
-      font-weight: 600;
-    }
-    .dropdown-content a:hover {
-      background: #f2f5f9;
-    }
-    /* Mode sombre */
-    @media (prefers-color-scheme: dark) {
-      .dropdown-content {
-        background: #0f1220;
-        color: #f5f7ff;
-        border: 1px solid #1f2336;
-        box-shadow: 0 12px 30px rgba(0,0,0,.5);
-      }
-      .dropdown-content a { color: #f5f7ff; }
-      .dropdown-content a:hover { background: #171b2f; }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }}{% else %}Plume de l’Ombre{% endif %}</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <nav aria-label="Navigation principale">
-        <div class="brand">Plume de l’Ombre</div>
-        <div class="menu" role="menubar">
-          <a role="menuitem" href="/">Accueil</a>
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="/">Plume de l’Ombre</a>
 
-          <div class="dropdown">
-            <a role="menuitem" aria-haspopup="true" aria-expanded="false">Portfolio ▾</a>
-            <div class="dropdown-content" role="menu">
-              <a role="menuitem" href="/textes.html">Textes en vers</a>
-              <a role="menuitem" href="/fiction.html">Fiction</a>
-              <a role="menuitem" href="/articles.html">Articles</a>
-              <a role="menuitem" href="/oeuvres.html">Œuvres composites</a>
-            </div>
-          </div>
+    <nav class="main-nav" aria-label="Navigation principale">
+      <ul class="menu">
+        <li><a href="/">Accueil</a></li>
 
-          <a role="menuitem" href="/services.html">Services</a>
-          <a role="menuitem" href="/apropos.html">À propos</a>
-          <a role="menuitem" class="btn" href="/contact.html">Contact</a>
-        </div>
-      </nav>
-    </div>
-  </header>
+        {# Menu déroulant Rédaction (ex-Portfolio) #}
+        <li class="has-dropdown">
+          <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Rédaction</button>
+          <ul class="dropdown" role="menu">
+            <li role="none"><a role="menuitem" href="/textes.html">Textes</a></li>
+            <li role="none"><a role="menuitem" href="/fiction.html">Fiction</a></li>
+            <li role="none"><a role="menuitem" href="/articles.html">Articles</a></li>
+            <li role="none"><a role="menuitem" href="/oeuvres.html">Œuvres composites</a></li>
+          </ul>
+        </li>
 
-  <main id="content" class="wrap" tabindex="-1">
-    {{ content | safe }}
-  </main>
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/a-propos.html">À propos</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/dashboard.html">Contactez‑moi</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-  <footer>
-    <div class="wrap">
-      <p>© <span id="y"></span> Plume de l’Ombre — Portfolio. Tous droits réservés.</p>
-    </div>
-  </footer>
+<main id="main-content">
+  {{ content | safe }}
+</main>
 
-  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+<footer class="site-footer">
+  <div class="container">
+    <p>© {{ "now" | date("yyyy") }} Plume de l’Ombre — Tous droits réservés.</p>
+  </div>
+</footer>
+
+<style>
+  .site-header{padding:1rem 0;border-bottom:1px solid #e6e6e6}
+  .container{max-width:1100px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;justify-content:space-between}
+  .menu{list-style:none;margin:0;padding:0;display:flex;gap:1rem;align-items:center}
+  .menu a{text-decoration:none}
+  .has-dropdown{position:relative}
+  .dropdown-toggle{background:none;border:0;cursor:pointer;font:inherit;padding:0}
+  .has-dropdown:hover .dropdown,
+  .has-dropdown:focus-within .dropdown{display:block}
+  .dropdown{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid #e6e6e6;min-width:220px;z-index:10}
+  .dropdown li{list-style:none}
+  .dropdown a{display:block;padding:.6rem .9rem}
+  .dropdown a:hover{background:#f7f7f7}
+  #main-content{padding:2rem 1rem}
+  .site-footer{padding:1.2rem 0;border-top:1px solid #e6e6e6}
+</style>
 </body>
 </html>

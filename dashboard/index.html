@@ -10,7 +10,6 @@
 <body>
   <script>window.CMS_MANUAL_INIT = true;</script>
 
-  <!-- Config CMS embarquée, volontairement simplifiée -->
   <script>
     window.CMS_CONFIG = {
       backend: { name: "git-gateway", branch: "main" },
@@ -27,6 +26,7 @@
           create: true,
           slug: "{{slug}}",
           preview_path: "textes/{{slug}}/",
+          sortable_fields: ["title","date","commit_date"],
           fields: [
             { label: "Titre", name: "title", widget: "string" },
             { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
@@ -45,6 +45,7 @@
           create: true,
           slug: "{{slug}}",
           preview_path: "fiction/{{slug}}/",
+          sortable_fields: ["title","date","commit_date"],
           fields: [
             { label: "Titre", name: "title", widget: "string" },
             { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
@@ -63,6 +64,7 @@
           create: true,
           slug: "{{slug}}",
           preview_path: "articles/{{slug}}/",
+          sortable_fields: ["title","date","commit_date"],
           fields: [
             { label: "Titre", name: "title", widget: "string" },
             { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
@@ -81,6 +83,7 @@
           create: true,
           slug: "{{slug}}",
           preview_path: "oeuvres/{{slug}}/",
+          sortable_fields: ["title","date","commit_date"],
           fields: [
             { label: "Titre", name: "title", widget: "string" },
             { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
@@ -98,8 +101,6 @@
 
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script src="https://unpkg.com/netlify-cms@^2/dist/netlify-cms.js"></script>
-  <script>
-    window.CMS.init({ config: window.CMS_CONFIG });
-  </script>
+  <script>window.CMS.init({ config: window.CMS_CONFIG });</script>
 </body>
 </html>

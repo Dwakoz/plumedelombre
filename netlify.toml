@@ -37,6 +37,6 @@
 [[headers]]
   for = "/dashboard/*"
   [headers.values]
-    Basic-Auth = "admin:CHANGE_ME"
+    Basic-Auth = "admin:lolmwalol"
     Cache-Control = "no-store"
     X-Robots-Tag = "noindex, nofollow"

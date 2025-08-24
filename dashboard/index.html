@@ -4,11 +4,29 @@
   <meta charset="utf-8">
   <title>Dashboard — Plume de l’Ombre</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://unpkg.com/netlify-cms@^2/dist/cms.css" rel="stylesheet">
   <meta name="robots" content="noindex, nofollow">
+  <link href="https://unpkg.com/netlify-cms@^2/dist/cms.css" rel="stylesheet">
 </head>
 <body>
+  <script>window.CMS_MANUAL_INIT = true;</script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script src="https://unpkg.com/netlify-cms@^2/dist/netlify-cms.js"></script>
+  <script>
+    // Charge la config depuis /dashboard/config.yml
+    fetch("./config.yml", { cache: "no-store" })
+      .then(r => {
+        if(!r.ok) throw new Error("config.yml introuvable");
+        return r.text();
+      })
+      .then(yamlText => {
+        const config = window.jsyaml.load(yamlText);
+        window.CMS.init({ config });
+      })
+      .catch(err => {
+        document.body.innerHTML = "<pre style='padding:1rem'>Erreur: " + err.message + "</pre>";
+        console.error(err);
+      });
+  </script>
+  <script src="https://unpkg.com/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
 </body>
 </html>

@@ -14,7 +14,6 @@ slug:
   sanitize_replacement: "-"
 
 collections:
-  # ——— Textes
   - name: "textes"
     label: "Textes"
     label_singular: "Texte"
@@ -22,22 +21,19 @@ collections:
     create: true
     slug: "{{slug}}"
     sortable_fields: ["date", "title"]
-    view_filters:
-      - label: "Publié"
-        field: "draft"
-        pattern: false
     preview_path: "textes/{{slug}}/"
+    view_filters:
+      - { label: "Publié", field: "draft", pattern: false }
     fields:
       - { label: "Titre", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
       - { label: "Éditeur / Plateforme", name: "publisher", widget: "string", required: false }
       - { label: "URL publique", name: "url", widget: "string", required: false }
-      - { label: "Extrait (150 car. env.)", name: "excerpt", widget: "text", required: false }
+      - { label: "Extrait", name: "excerpt", widget: "text", required: false }
       - { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false }
       - { label: "Contenu", name: "body", widget: "markdown" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["textes"], required: false }
+      - { label: "Tags", name: "tags", widget: "list", default: ["texte"], required: false }
 
-  # ——— Fiction
   - name: "fiction"
     label: "Fiction"
     label_singular: "Fiction"
@@ -51,12 +47,11 @@ collections:
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
       - { label: "Éditeur / Plateforme", name: "publisher", widget: "string", required: false }
       - { label: "URL publique", name: "url", widget: "string", required: false }
-      - { label: "Extrait (150 car. env.)", name: "excerpt", widget: "text", required: false }
+      - { label: "Extrait", name: "excerpt", widget: "text", required: false }
       - { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false }
       - { label: "Contenu", name: "body", widget: "markdown" }
       - { label: "Tags", name: "tags", widget: "list", default: ["fiction"], required: false }
 
-  # ——— Articles
   - name: "articles"
     label: "Articles"
     label_singular: "Article"
@@ -70,12 +65,11 @@ collections:
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
       - { label: "Éditeur / Plateforme", name: "publisher", widget: "string", required: false }
       - { label: "URL publique", name: "url", widget: "string", required: false }
-      - { label: "Extrait (150 car. env.)", name: "excerpt", widget: "text", required: false }
+      - { label: "Extrait", name: "excerpt", widget: "text", required: false }
       - { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false }
       - { label: "Contenu", name: "body", widget: "markdown" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["articles"], required: false }
+      - { label: "Tags", name: "tags", widget: "list", default: ["article"], required: false }
 
-  # ——— Œuvres composites
   - name: "oeuvres"
     label: "Œuvres composites"
     label_singular: "Œuvre composite"
@@ -89,7 +83,7 @@ collections:
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
       - { label: "Éditeur / Plateforme", name: "publisher", widget: "string", required: false }
       - { label: "URL publique", name: "url", widget: "string", required: false }
-      - { label: "Extrait (150 car. env.)", name: "excerpt", widget: "text", required: false }
+      - { label: "Extrait", name: "excerpt", widget: "text", required: false }
       - { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false }
       - { label: "Contenu", name: "body", widget: "markdown" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["oeuvres"], required: false }
+      - { label: "Tags", name: "tags", widget: "list", default: ["oeuvre"], required: false }

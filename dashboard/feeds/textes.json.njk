@@ -1,0 +1,13 @@
+---
+permalink: /feeds/textes.json
+eleventyExcludeFromCollections: true
+---
+[
+{% for item in collections.textes -%}
+  {{ {
+    "title": item.data.title | striptags,
+    "url": item.url,
+    "summary": item.templateContent | striptags | truncate(140, true, "…")
+  } | dump }}{% if not loop.last %},{% endif %}
+{%- endfor %}
+]

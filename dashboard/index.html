@@ -9,24 +9,105 @@
 </head>
 <body>
   <script>window.CMS_MANUAL_INIT = true;</script>
+  <script>
+    // Config CMS embarquée pour éviter tout doublon
+    window.CMS_CONFIG = {
+      backend: { name: "git-gateway", branch: "main" },
+      media_folder: "static/uploads",
+      public_folder: "/static/uploads",
+      publish_mode: "editorial_workflow",
+      locale: "fr",
+      slug: { clean_accents: true, encoding: "unicode", sanitize_replacement: "-" },
+      collections: [
+        {
+          name: "textes",
+          label: "Textes",
+          label_singular: "Texte",
+          folder: "content/textes",
+          create: true,
+          slug: "{{slug}}",
+          sortable_fields: ["date", "title"],
+          preview_path: "textes/{{slug}}/",
+          view_filters: [{ label: "Publié", field: "draft", pattern: false }],
+          fields: [
+            { label: "Titre", name: "title", widget: "string" },
+            { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
+            { label: "Éditeur / Plateforme", name: "publisher", widget: "string", required: false },
+            { label: "URL publique", name: "url", widget: "string", required: false },
+            { label: "Extrait", name: "excerpt", widget: "text", required: false },
+            { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false },
+            { label: "Contenu", name: "body", widget: "markdown" },
+            { label: "Tags", name: "tags", widget: "list", default: ["texte"], required: false }
+          ]
+        },
+        {
+          name: "fictions",
+          label: "Fictions",
+          label_singular: "Fiction",
+          folder: "content/fiction",
+          create: true,
+          slug: "{{slug}}",
+          sortable_fields: ["date", "title"],
+          preview_path: "fiction/{{slug}}/",
+          fields: [
+            { label: "Titre", name: "title", widget: "string" },
+            { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
+            { label: "Éditeur / Plateforme", name: "publisher", widget: "string", required: false },
+            { label: "URL publique", name: "url", widget: "string", required: false },
+            { label: "Extrait", name: "excerpt", widget: "text", required: false },
+            { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false },
+            { label: "Contenu", name: "body", widget: "markdown" },
+            { label: "Tags", name: "tags", widget: "list", default: ["fiction"], required: false }
+          ]
+        },
+        {
+          name: "articles",
+          label: "Articles",
+          label_singular: "Article",
+          folder: "content/articles",
+          create: true,
+          slug: "{{slug}}",
+          sortable_fields: ["date", "title"],
+          preview_path: "articles/{{slug}}/",
+          fields: [
+            { label: "Titre", name: "title", widget: "string" },
+            { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
+            { label: "Éditeur / Plateforme", name: "publisher", widget: "string", required: false },
+            { label: "URL publique", name: "url", widget: "string", required: false },
+            { label: "Extrait", name: "excerpt", widget: "text", required: false },
+            { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false },
+            { label: "Contenu", name: "body", widget: "markdown" },
+            { label: "Tags", name: "tags", widget: "list", default: ["article"], required: false }
+          ]
+        },
+        {
+          name: "oeuvres",
+          label: "Œuvres composites",
+          label_singular: "Œuvre composite",
+          folder: "content/oeuvres",
+          create: true,
+          slug: "{{slug}}",
+          sortable_fields: ["date", "title"],
+          preview_path: "oeuvres/{{slug}}/",
+          fields: [
+            { label: "Titre", name: "title", widget: "string" },
+            { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
+            { label: "Éditeur / Plateforme", name: "publisher", widget: "string", required: false },
+            { label: "URL publique", name: "url", widget: "string", required: false },
+            { label: "Extrait", name: "excerpt", widget: "text", required: false },
+            { label: "Brouillon", name: "draft", widget: "boolean", default: false, required: false },
+            { label: "Contenu", name: "body", widget: "markdown" },
+            { label: "Tags", name: "tags", widget: "list", default: ["oeuvre"], required: false }
+          ]
+        }
+      ]
+    };
+  </script>
+
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script src="https://unpkg.com/netlify-cms@^2/dist/netlify-cms.js"></script>
   <script>
-    // Charge la config depuis /dashboard/config.yml
-    fetch("./config.yml", { cache: "no-store" })
-      .then(r => {
-        if(!r.ok) throw new Error("config.yml introuvable");
-        return r.text();
-      })
-      .then(yamlText => {
-        const config = window.jsyaml.load(yamlText);
-        window.CMS.init({ config });
-      })
-      .catch(err => {
-        document.body.innerHTML = "<pre style='padding:1rem'>Erreur: " + err.message + "</pre>";
-        console.error(err);
-      });
+    window.CMS.init({ config: window.CMS_CONFIG });
   </script>
-  <script src="https://unpkg.com/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
 </body>
 </html>

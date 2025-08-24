@@ -1,0 +1,8 @@
+{
+  "layout": "base.njk",
+  "tags": "fiction",
+  "eleventyComputed": {
+    "permalink": "/fiction/{{ page.fileSlug }}/",
+    "title": "{{ title }}"
+  }
+}

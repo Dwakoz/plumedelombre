@@ -1,4 +1,4 @@
-// .eleventy.js — perfs + collections explicites + auto‑tags robustes
+// .eleventy.js — perfs + collections explicites + auto‑tags robustes + passthrough dashboard
 const path = require("path");
 const fs = require("fs");
 
@@ -100,9 +100,7 @@ async function rewriteImages(html) {
 }
 
 module.exports = function (eleventyConfig) {
-  // Protection Eleventy par défaut conservée.
-
-  // Auto‑tags robustes: ignore tout sauf strings/arrays. N'écrase rien si vide.
+  // Auto‑tags robustes
   eleventyConfig.addGlobalData("eleventyComputed", {
     tags: (data) => {
       const existing = data && data.tags;
@@ -118,7 +116,7 @@ module.exports = function (eleventyConfig) {
       if (/\/(content\/)?oeuvres?\//.test(p)) base.add("oeuvre");
 
       const out = Array.from(base);
-      if (out.length === 0) return undefined; // ne pas surcharger si rien à ajouter
+      if (out.length === 0) return undefined;
       return out;
     }
   });
@@ -129,15 +127,19 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addCollection("fictions", (api) => api.getFilteredByTag("fiction"));
   eleventyConfig.addCollection("oeuvres", (api) => api.getFilteredByTag("oeuvre"));
 
+  // Passthroughs
   eleventyConfig.addPassthroughCopy({ "static": "static" });
   eleventyConfig.addPassthroughCopy({ "styles.css": "styles.css" });
+  eleventyConfig.addPassthroughCopy({ "dashboard": "dashboard" }); // <-- nécessaire
   eleventyConfig.addWatchTarget("styles.css");
 
+  // Shortcode image
   eleventyConfig.addNunjucksAsyncShortcode("image", async function (src, alt = "", cls = "", sizes) {
     const html = await pictureHTML(src, alt, cls, sizes);
     return html || `<img src="${src}" alt="${alt}" class="${cls}" loading="lazy" decoding="async">`;
   });
 
+  // Transforms
   eleventyConfig.addTransform("optimize-images", async function (content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       return await rewriteImages(content);

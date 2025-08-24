@@ -1,4 +1,4 @@
-// .eleventy.js — perf + garde-fous + fix "collections" réservé
+// .eleventy.js — perf + garde-fous, SANS override des noms réservés
 const path = require("path");
 const fs = require("fs");
 
@@ -73,7 +73,7 @@ async function rewriteImages(html) {
     const altMatch = attrs.match(/alt=["']([^"']*)["']/i);
     const alt = altMatch ? altMatch[1] : "";
     const classMatch = attrs.match(/\bclass=["']([^"']*)["']/i);
-    const cls = classMatch ? classMatch[1] : "";
+    const cls = classMatch ? cls = classMatch[1] : "";
 
     tasks.push(
       pictureHTML(src, alt, cls).then(pic => {
@@ -100,8 +100,8 @@ async function rewriteImages(html) {
 }
 
 module.exports = function (eleventyConfig) {
-  // Autoriser les noms réservés dans la cascade (corrige l’erreur "collections")
-  eleventyConfig.setFreezeReservedData(false);
+  // IMPORTANT: on garde la protection par défaut.
+  // NE PAS appeler setFreezeReservedData(false)
 
   eleventyConfig.addPassthroughCopy({ "static": "static" });
   eleventyConfig.addPassthroughCopy({ "styles.css": "styles.css" });

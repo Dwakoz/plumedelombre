@@ -1,38 +1,41 @@
+# netlify.toml — cache agressif + préchargements
 [build]
-  command = "npm run build"
   publish = "_site"
+  command = "npm run build"
 
-[[redirects]]
-from = "/404"
-to = "/404.html"
-status = 404
+# Compression est auto sur Netlify. On renforce le cache.
 
-# Redirections depuis l’ancien slug
-[[redirects]]
-from = "/redaction"
-to = "/textes"
-status = 301
-force = true
-
-[[redirects]]
-from = "/redaction.html"
-to = "/textes.html"
-status = 301
-force = true
-
-# Sécurité
+# Cache fort pour images optimisées
 [[headers]]
-for = "/*"
+  for = "/optimized-img/*"
   [headers.values]
-  Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
-  X-Content-Type-Options = "nosniff"
-  X-Frame-Options = "DENY"
-  Referrer-Policy = "strict-origin-when-cross-origin"
-  Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-  Content-Security-Policy = "default-src 'self' https: data: blob:; img-src 'self' https: data: blob:; script-src 'self' https: 'unsafe-inline' 'unsafe-eval'; style-src 'self' https: 'unsafe-inline'; font-src 'self' https: data:; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    Cache-Control = "public, max-age=31536000, immutable"
 
-# Cache long
+# Cache fort pour uploads bruts si référencés
 [[headers]]
-for = "/**/*.{css,js,woff,woff2,png,jpg,jpeg,svg,webp,gif}"
+  for = "/static/uploads/*"
   [headers.values]
-  Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache statique pour CSS
+[[headers]]
+  for = "/styles.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Link = "</styles.css>; rel=preload; as=style"
+
+# Préchargement police si vous en ajoutez (exemple, à adapter)
+# [[headers]]
+#   for = "/static/fonts/*.woff2"
+#   [headers.values]
+#     Cache-Control = "public, max-age=31536000, immutable"
+#     Link = "</static/fonts/myfont.woff2>; rel=preload; as=font; type=font/woff2; crossorigin"
+
+# Sécurité basique
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"

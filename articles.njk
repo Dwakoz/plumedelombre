@@ -6,11 +6,12 @@ permalink: /articles.html
 
 <section id="articles">
   <h1>Articles</h1>
+  <p class="muted">Sélection d’articles publiés en ligne.</p>
 
   <div class="grid cols-3" role="list">
   {% for item in collections.articles | reverse %}
     <article class="card" role="listitem">
-      <h3>{{ item.data.title }}</h3>
+      <h3 class="title-blue">{{ item.data.title | safe }}</h3>
       {% if item.data.publisher %}<p class="muted">{{ item.data.publisher }}</p>{% endif %}
       <p class="muted">
         {% if item.data.excerpt %}
@@ -19,8 +20,14 @@ permalink: /articles.html
           {{ '' | truncate(0) }}
         {% endif %}
       </p>
+      {% if item.data.url %}
       <p><a class="btn" href="{{ item.data.url }}" target="_blank" rel="noopener noreferrer">Lire sur le site</a></p>
+      {% endif %}
     </article>
   {% endfor %}
   </div>
 </section>
+
+<style>
+  .card h3.title-blue { color: var(--link, var(--accent, #3ea8ff)); }
+</style>
